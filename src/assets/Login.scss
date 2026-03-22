@@ -1,0 +1,20 @@
+.custom-login-button{
+    background-color: #F5D1A9;
+    border-color: #F5D1A9; 
+    color: '#6F5D42'; 
+    border-radius:  16px;
+    transition: all 0.3s ease;
+    @media(min-width: 768px){
+        &:hover{
+            transform: translateY(10px);
+            background-color: darken(#F5D1A9,15%);
+        }
+    }
+
+    @media (max-width:767px){
+        &:active{
+            transform: translateY(10px);
+            background-color: darken(#F5D1A9,15%);
+        }
+    }
+}

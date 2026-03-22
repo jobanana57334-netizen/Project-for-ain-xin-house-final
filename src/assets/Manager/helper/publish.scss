@@ -1,0 +1,69 @@
+/* =========================================
+   桌機版預設排版 (對應 Figma 桌機版設定)
+========================================= */
+.publish-layout {
+    display: flex;
+    flex-direction: row; /* 左右排列 */
+    gap: 48px; /* ✅ 統一由外層控制左右區塊的間距，子元素就不需要寫 margin 了 */
+}
+
+.publish-menu {
+    display: flex;
+    flex-direction: column; /* 選單直向排列 */
+    /* ✅ 稍微把選單寬度收合一點(例如從306px改為260px)，可以給右側更多空間。你也可以視需求改回306px */
+    width: 260px; 
+    list-style: none;
+}
+
+/* 針對 side-nav-item 的精準設定 */
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 24px; /* 對應 Figma: Padding 24px */
+    gap: 16px;     /* 對應 Figma: Gap 16px */
+    border-bottom: 1px solid #E7E7E7; /* 對應 Figma: Border bottom */
+    
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    
+    &:not(.text-system-accent):hover {
+        color: var(--system-accent, #E87A5D) !important; 
+        background-color: rgba(232, 122, 93, 0.05); 
+        border-radius: 8px; /* 加上淡淡的背景，配一點圓角會很好看 */
+    }
+}
+
+.content-area {
+    /* ✅ 移除原本的 margin: 48px，讓右邊可以貼齊容器邊緣 */
+    margin: 0; 
+    flex: 1; /* ✅ 讓內容區塊自動填滿剩下的所有空間 */
+    min-width: 0; /* ✅ 防止右側內容過寬導致破版 */
+    gap: 16px;
+}
+
+/* =========================================
+   手機版排版 (767px 以下)
+========================================= */
+@media (max-width: 767px) {
+    .publish-layout {
+        flex-direction: column; /* 變成上下排列 */
+        gap: 24px; /* 這是選單區塊跟下方表單區塊的距離 */
+    }
+
+    .publish-menu {
+        width: 100%; /* 手機版佔滿寬度 */
+        flex-direction: row; /* 選單變成橫向頁籤 */
+        overflow-x: auto; /* 左右滑動 */
+        border-bottom: 1px solid var(--gray-200, #E0E0E0);
+        gap: 8px; 
+        padding: 0 16px; 
+    }
+
+    .sidebar-link {
+        padding: 16px; /* 對應 Figma 的 Padding: 16px */
+        gap: 8px;      /* 對應 Figma 的 Gap: 8px (圖示與文字的間距) */
+    }
+
+    .content-area {
+        width: 100%;
+    }
+}

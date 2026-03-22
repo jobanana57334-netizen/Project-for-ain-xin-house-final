@@ -1,0 +1,36 @@
+$primary-100: #fcfbf7;
+$primary-200: #fbf4e4;
+$primary-300: #f5e0bd;
+$primary-400: #d4ab6a;
+$primary-500: #6f5d42;
+
+$system-sub: #80a5b8;
+$system-accent: #c1521d;
+
+$white: #ffffff;
+$gray-100: #d5d5d5;
+$gray-200: #ababab;
+$gray-300: #808080;
+$gray-400: #565656;
+$gray-500: #2c2c2c;
+
+$colors: (
+  "primary-100": $primary-100,
+  "primary-200": $primary-200,
+  "primary-300": $primary-300,
+  "primary-400": $primary-400,
+  "primary-500": $primary-500,
+  "system-sub": $system-sub,
+  "system-accent": $system-accent,
+  "white": $white,
+  "gray-100": $gray-100,
+  "gray-200": $gray-200,
+  "gray-300": $gray-300,
+  "gray-400": $gray-400,
+  "gray-500": $gray-500,
+);
+:root {
+  @each $name, $color in $colors {
+    --color-#{$name}: #{$color};
+  }
+}

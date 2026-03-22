@@ -1,0 +1,112 @@
+@each $name, $color in $colors {
+  .text-#{$name} {
+    color: $color;
+  }
+  .bg-#{$name} {
+    background-color: $color;
+  }
+}
+
+// Spacing Utilities (0 to 500, multiples of 2)
+@for $i from 0 through 250 {
+  $val: $i * 2;
+
+  // Margin
+  .m-#{$val} {
+    margin: #{$val}px;
+  }
+  .mt-#{$val} {
+    margin-top: #{$val}px;
+  }
+  .mb-#{$val} {
+    margin-bottom: #{$val}px;
+  }
+  .ms-#{$val},
+  .ml-#{$val} {
+    margin-left: #{$val}px;
+  }
+  .me-#{$val},
+  .mr-#{$val} {
+    margin-right: #{$val}px;
+  }
+  .mx-#{$val} {
+    margin-left: #{$val}px;
+    margin-right: #{$val}px;
+  }
+  .my-#{$val} {
+    margin-top: #{$val}px;
+    margin-bottom: #{$val}px;
+  }
+
+  // Padding
+  .p-#{$val} {
+    padding: #{$val}px;
+  }
+  .pt-#{$val} {
+    padding-top: #{$val}px;
+  }
+  .pb-#{$val} {
+    padding-bottom: #{$val}px;
+  }
+  .ps-#{$val},
+  .pl-#{$val} {
+    padding-left: #{$val}px;
+  }
+  .pe-#{$val},
+  .pr-#{$val} {
+    padding-right: #{$val}px;
+  }
+  .px-#{$val} {
+    padding-left: #{$val}px;
+    padding-right: #{$val}px;
+  }
+  .py-#{$val} {
+    padding-top: #{$val}px;
+    padding-bottom: #{$val}px;
+  }
+}
+
+// Display Utilities (Simple version since bootstrap utilities are removed)
+.d-flex {
+  display: flex !important;
+}
+.d-none {
+  display: none !important;
+}
+.d-block {
+  display: block !important;
+}
+
+@media (min-width: 768px) {
+  .d-md-flex {
+    display: flex !important;
+  }
+  .d-md-none {
+    display: none !important;
+  }
+  .d-md-block {
+    display: block !important;
+  }
+}
+
+.justify-content-between {
+  justify-content: space-between !important;
+}
+.justify-content-center {
+  justify-content: center !important;
+}
+.align-items-center {
+  align-items: center !important;
+}
+.align-items-start {
+  align-items: flex-start !important;
+}
+.flex-column {
+  flex-direction: column !important;
+}
+.align-middle {
+  vertical-align: middle !important;
+}
+.cursor-pointer {
+  cursor: pointer !important;
+}

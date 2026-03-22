@@ -1,0 +1,18 @@
+.error-btn{
+    display: inline-flex; /* 改成 inline-flex，按鈕寬度會根據內容自適應 */
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    padding : 12px 32px ;
+    gap: 24px;
+    background-color: #F5E0BD;
+    font-weight: 500;
+    border: 2px solid transparent; /* 加上實線邊框才不會跟空心按鈕有高度落差 */
+    border: transparent;
+    transition: all 0.3s ease;
+    
+    &:hover{
+        background-color:darken(#F5E0BD, 10%);
+
+    }
+}

@@ -1,0 +1,17 @@
+.action-row {
+    transition: background-color 0.2s ease;
+    &:hover {
+        background-color: #f8f9fa; /* Bootstrap 的 bg-light */
+    }
+}
+
+/* 確保 react-datepicker 彈出視窗永遠在最上層 */
+.react-datepicker-popper {
+  z-index: 9999 !important;
+}
+
+/* 確保 input-group 裡的 datepicker 寬度能正確填滿 */
+.react-datepicker-wrapper {
+  flex: 1 1 auto;
+  width: auto;
+}
