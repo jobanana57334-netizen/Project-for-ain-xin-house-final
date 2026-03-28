@@ -43,6 +43,8 @@ const UserMenu=({handleLogout})=>{
                 }))
             });
         }else{
+            // 告訴 ESLint 這是 Firebase 標準寫法，很安全
+            //eslint-disable-next-line
             setUserName("");
         }
 

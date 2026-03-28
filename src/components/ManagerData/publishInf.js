@@ -180,9 +180,7 @@ const addHousesBtn = document.querySelector(".addHouses-btn"); */
 
 /* let titleList = ""; */
 
-/* listTab.forEach((title)=>{
-  titleList += `<a class="list-group-item list-group-item-action h6" id="${title.id}" data-bs-toggle="list" href="#${title.ariaControls}" role="tab" aria-controls="${title.ariaControls}"><img src=${title.img} alt="Icons-write" class="icon-title">${title.title}​</a>`
-}); */
+
 const listGroupRow = document.querySelector(".list-group-row");
 console.log(listGroupRow);
 

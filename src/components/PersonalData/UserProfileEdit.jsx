@@ -48,10 +48,10 @@ const UserProfileEdit = () => {
                     // 反之,則先用 Google 帳號的預設資料
                     else{
                         setUserData({
-                            // 💡 防呆機制：如果資料庫裡沒有這三個欄位，就去抓 Auth 的預設資料來補！
-                            email: firestoreData.email || user.email || '',
-                            img: firestoreData.img || user.photoURL || '',
-                            name: firestoreData.name || user.displayName || ''
+                            // 💡 既然沒有 firestoreData，我們直接拿 Google Auth 的 user 資料當作預設值
+                            email: user.email || '',
+                            img: user.photoURL || '',
+                            name: user.displayName || ''
                         });
                     }
                 }catch(err){

@@ -134,7 +134,7 @@ const ItemDetail = () => {
         fetchAllDatas();
         
     // 🌟 將 currentUser 加入依賴陣列。這樣使用者一登入，畫面愛心就會自動亮起！
-    },[id,currentUser]);//當id或currentUser改變時，重新取得資料
+    },[id,currentUser,dispatch]);//當id或currentUser改變時，重新取得資料
 
     if(loading){
         return (
@@ -188,7 +188,9 @@ const ItemDetail = () => {
                 <Map houseData={houseData}/>
                 
                 {/* 大家都在看 */}
-                <EveryoneInterest currentHouseId={id}/>
+                <EveryoneInterest 
+                    currentHouseId={id}
+                    currentUser={currentUser}/>
             </div>
         </>
     );

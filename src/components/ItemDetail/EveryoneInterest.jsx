@@ -6,25 +6,17 @@ import { Link } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import { showMessage } from '../../store/MessageSlice';
-const EveryoneInterest = ({currentHouseId}) => {
+const EveryoneInterest = ({currentHouseId,currentUser}) => {
     // 💡 建立資料陣列，方便管理與後續串接 API
     const [recommendDatas,setRecommendDatas]= useState([]);
     const [isLoading,setIsLoading]= useState(true);
-    const [isUpdating,setIsUpdating] = useState(true);
-    const [currentUser,setCurrentUser]= useState(null);
+
 
     // 💡 追蹤目前正在點擊愛心的房屋 ID (使用 Set 可以同時追蹤多個)
     const [updatingIds,setUpdatingIds]= useState(new Set());
     const dispatch= useDispatch();
 
-    // 監聽是否登入
-    useEffect(()=>{
-        const auth=getAuth();
-        const unsubscribe= onAuthStateChanged(auth,(user)=>{
-            setCurrentUser(user||null);
-        });
-        return ()=>unsubscribe();
-    },[])
+
 
     // 傳入隨機房源，並「合併該使用者的收藏狀態」
     useEffect(()=>{
@@ -80,12 +72,8 @@ const EveryoneInterest = ({currentHouseId}) => {
             }
         };
         fetchRandomHouses();
-    },[currentHouseId,currentUser]); // 💡 將 currentUser 加入依賴，登入狀態改變時重新抓取
+    },[currentHouseId,currentUser,dispatch]); // 💡 將 currentUser 加入依賴，登入狀態改變時重新抓取
     
-    // 更新收藏狀態
-    useEffect(()=>{
-        
-    },[]);
 
     // 收藏功能
     const handleFavorite= async(e,id,currentState)=>{
@@ -137,7 +125,7 @@ const EveryoneInterest = ({currentHouseId}) => {
             console.error("雲端同步失敗，還原本地狀態...", err);
             // 失敗時，把愛心狀態復原
             setRecommendDatas(prev => prev.map(house => 
-                house.id === id ? { ...house, isfavor: currentStatus } : house
+                house.id === id ? { ...house, isfavor: currentState } : house
             ));
             dispatch(showMessage({
                 type: "error",

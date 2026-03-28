@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const ErrorPage=()=>{
     return(
-        <div class="container text-center py-5">
+        <div className="container text-center py-5">
             {/* 這裡加入一個極簡的 SVG Icon */}
             <div className="mb-4">
                 <svg 

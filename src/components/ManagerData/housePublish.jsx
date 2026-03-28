@@ -77,7 +77,7 @@ const onSubmit = async (data) => {
         className={`form-control ${errors[id] && 'is-invalid'}` }
         {...register(id, rules)}
         />
-        {errors[id] && <div id="validationServerUsernameFeedback" class="invalid-feedback">請輸入物件標題</div>}
+        {errors[id] && <div id="validationServerUsernameFeedback" className="invalid-feedback">請輸入物件標題</div>}
       </div>
     </>)
   };
@@ -144,7 +144,7 @@ const onSubmit = async (data) => {
         className={`form-control flex-fill ${errors[id] && 'is-invalid'}` }
         {...register(id, rules)}
          />
-        {errors[id] && <div id="validationServerUsernameFeedback" class="invalid-feedback">請輸入物件坪數</div>} 
+        {errors[id] && <div id="validationServerUsernameFeedback" className="invalid-feedback">請輸入物件坪數</div>} 
       </div>
     )
   }
@@ -159,7 +159,7 @@ const onSubmit = async (data) => {
         className={`form-control ${errors[id] && 'is-invalid'}` }
         {...register(id, rules)}
          />
-        {errors[id] && <div id="validationServerUsernameFeedback" class="invalid-feedback">請輸入物件總坪數</div>} 
+        {errors[id] && <div id="validationServerUsernameFeedback" className="invalid-feedback">請輸入物件總坪數</div>} 
       </div>
     )
   }
@@ -172,7 +172,7 @@ const onSubmit = async (data) => {
     const types = ['整層住家','獨立套房','分租套房','雅房','商辦'];
     return(<>
       <div className="mb-24 mb-md-16">
-        <label htmlFor={id} className="form-label body-2 text-gray-400">物​件​類型​ <span className="body-2 text-system-accent">*</span></label>
+        <label htmlFor={id} className="form-label body-2 text-gray-400">物件類型<span className="body-2 text-system-accent">*</span></label>
         <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
           <div className="btn-group single-select flex-wrap" role="group" aria-label="First group">
             {types.map((item) => (
@@ -221,6 +221,8 @@ const onSubmit = async (data) => {
   };
 
   const HouseRules = () =>{
+    // 告訴 ESLint 忽略這行的相容性警告
+    // eslint-disable-next-line react-hooks/incompatible-library
     const selectedRules = watch("houseRules");
     const rules = ['可開伙', '可養寵物', '不含管理費'];
 
