@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 const Menu = () => {
 
 
@@ -47,14 +47,14 @@ const Menu = () => {
                 {/* 使用 flex-column 垂直排列，pt-5 往下推，gap-4 控制間距 */}
                 <div className="offcanvas-body d-flex flex-column align-items-center justify-content-start pt-5 gap-4">
                     {menuItems.map((item) => (
-                        <a
-                            href={item.path} 
+                        <Link
+                            to={item.path} 
                             key={item.id}
                             className="text-decoration-none fw-bold custom-list-button"
                             
                         >
                             {item.title}
-                        </a>
+                        </Link>
                     ))}
                 </div>
                 

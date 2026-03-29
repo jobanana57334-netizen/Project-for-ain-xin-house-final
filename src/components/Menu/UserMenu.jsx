@@ -5,6 +5,7 @@ import { doc,onSnapshot } from "firebase/firestore"; //進行即時監聽
 
 import { useDispatch } from 'react-redux';
 import { showMessage } from '../../store/MessageSlice';
+import { Link } from 'react-router-dom';
 const UserMenu=({handleLogout})=>{
 
     const SelectFunction=[
@@ -99,13 +100,13 @@ const UserMenu=({handleLogout})=>{
                         {/* 💡 記得將來把 to="" 換成你實際的 Router 路徑 */}
                         {
                             SelectFunction.map((item)=>(
-                                <a
-                                    href={item.turnTo} 
+                                <Link
+                                    to={item.turnTo} 
                                     key={item.id}
                                     className="text-decoration-none fw-bold custom-list-button"
                                     >
                                     {item.title}
-                                </a>
+                                </Link>
                             ))
                         }
                     </div>

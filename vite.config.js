@@ -5,7 +5,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import path from 'path';
 export default defineConfig({
     // 註：這樣寫可以讓本地開發保持在 /，而打包上傳時會自動切換成 GitHub Pages 需要的路徑
-    base: '/',
+    base: process.env.NODE_ENV === 'production' ? '/Project-for-ain-xin-house-final/' : '/',
     plugins: [
         react(),
         svgr(),
