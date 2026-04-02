@@ -8,20 +8,20 @@ import Announce from '../components/homepage/Announce'
 
 
 const Home=()=>{
-    return (
-        <>
+  return (
+    <>
             
-            <main>
-                <AdBar/>
-            </main>
-            <HouseCard/>
-            <MainCard/>
-            <ReasonForCard/>
-            <RecommandCard/>
-            <Announce/>
+      <main>
+        <AdBar/>
+      </main>
+      <HouseCard/>
+      <MainCard/>
+      <ReasonForCard/>
+      <RecommandCard/>
+      <Announce/>
 
-        </>
-    )
+    </>
+  )
 }
 
 export default Home;

@@ -1,11 +1,11 @@
 import Collected from "../components/collected/collected";
 
 const CollectPage=()=>{
-    return(
-        <>
-            <Collected/>
-        </>
-    )
+  return(
+    <>
+      <Collected/>
+    </>
+  )
 }
 
 export default CollectPage;

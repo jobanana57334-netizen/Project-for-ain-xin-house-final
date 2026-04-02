@@ -3,37 +3,36 @@ import { useForm } from "react-hook-form";
 import addJson from '../../assets/Manager/CityCountyData.json';
 import { useDispatch } from 'react-redux';
 import { showMessage } from '../../store/MessageSlice';
+import { pUrl } from '../../utils/constants';
 function HousePublish() {
 
   const dispatch= useDispatch();
 
   const {
-      register,
-      handleSubmit,
-      watch,
-      setValue,
-      formState: {errors}
-    } = useForm({
-      defaultValues: {
-        houseType: [],
-        images: [],
-        houseRules: [],
-        furnishings: [],
-        houseAge: '',
-        rent: '',
-        hoaFee: '',
-        contactName: '',
-        tel: ''
-      },
-      mode:'onTouched'
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    formState: {errors}
+  } = useForm({
+    defaultValues: {
+      houseType: [],
+      images: [],
+      houseRules: [],
+      furnishings: [],
+      houseAge: '',
+      rent: '',
+      hoaFee: '',
+      contactName: '',
+      tel: ''
+    },
+    mode:'onTouched'
   });
   
-const onSubmit = async (data) => {
+  const onSubmit = async () => {
     try {
       // 這裡可以放置你的 API 請求邏輯，例如：
       // await api.post('/api/houses', data);
-      
-      console.log("準備送出的資料:", data);
 
       // 成功時發送訊息
       dispatch(showMessage({
@@ -57,7 +56,7 @@ const onSubmit = async (data) => {
 
   // 處理驗證失敗的狀態
   const onError = (errors) => {
-    console.log("表單驗證錯誤:", errors);
+    console.error("表單驗證錯誤:", errors);
     
     dispatch(showMessage({
       type: 'warning',
@@ -65,21 +64,28 @@ const onSubmit = async (data) => {
     }));
   };
 
-  const HouseTitleInput = ({register,errors,id,type,rules}) =>{
-
+  const HouseTitleInput = ({ register, errors, id, type, rules }) => {
     return (
-    <>
-      <div className="mb-24 mb-md-16">
-        <label htmlFor={id} className="form-label body-2 text-gray-400">物件標題 <span className="body-2 text-system-accent">*</span></label>
-        <input 
-        type={type}
-        id={id} placeholder="輸入物件標題" 
-        className={`form-control ${errors[id] && 'is-invalid'}` }
-        {...register(id, rules)}
-        />
-        {errors[id] && <div id="validationServerUsernameFeedback" className="invalid-feedback">請輸入物件標題</div>}
-      </div>
-    </>)
+      <>
+        <div className="mb-24 mb-md-16">
+          <label htmlFor={id} className="form-label body-2 text-gray-400">
+            物件標題 <span className="body-2 text-system-accent">*</span>
+          </label>
+          <input
+            type={type}
+            id={id}
+            placeholder="輸入物件標題"
+            className={`form-control ${errors[id] ? 'is-invalid' : ''}`}
+            {...register(id, rules)}
+          />
+          {errors[id] && (
+            <div className="invalid-feedback">
+              {errors[id]?.message || '請輸入物件標題'}
+            </div>
+          )}
+        </div>
+      </>
+    );
   };
 
   const ImageUpload = ({ register, setValue, watch, id, rules }) => {
@@ -87,22 +93,22 @@ const onSubmit = async (data) => {
 
     const handleFileChange = (e) => {
       const files = Array.from(e.target.files);
-        if (files.length === 0) return;
-        const newImages = files.map((file) => ({
-          file, 
-          url: URL.createObjectURL(file), 
-          id: Math.random().toString(36).substring(2, 9)
-        }));
-        setValue(id, [...images, ...newImages], { shouldValidate: true });
-      };
+      if (files.length === 0) return;
+      const newImages = files.map((file) => ({
+        file, 
+        url: URL.createObjectURL(file), 
+        id: Math.random().toString(36).substring(2, 9)
+      }));
+      setValue(id, [...images, ...newImages], { shouldValidate: true });
+    };
 
     const removeImage = (imgId) => {
       const filteredImages = images.filter((img) => img.id !== imgId);
       setValue(id, filteredImages, { shouldValidate: true });
     };
 
-  return (
-    <div className='d-flex flex-wrap' style={{gap:"16px"}}>
+    return (
+      <div className='d-flex flex-wrap' style={{gap:"16px"}}>
         {images.map((img) => (
           <div key={img.id} className="image-upload ">
             <img src={img.url} alt="preview" className="upload-img" />
@@ -111,12 +117,12 @@ const onSubmit = async (data) => {
               className="delete-btn" 
               onClick={() => removeImage(img.id)}
             >
-              <img src="/ManagerImages/delete.svg" alt="img-delete" className="img-del" />
+              <img src={`${pUrl}ManagerImages/delete.svg`} alt="img-delete" className="img-del" />
             </button>
           </div>
         ))}
         <label htmlFor={id} className="upload-box" style={{ cursor: 'pointer' }}>
-          <img src="/ManagerImages/image-button.png" alt="image-button" />
+          <img src={`${pUrl}ManagerImages/image-button.png`} alt="image-button" />
         </label>
         <input 
           type="file" 
@@ -130,20 +136,20 @@ const onSubmit = async (data) => {
           type="hidden" 
           {...register(id, rules)} 
         />
-    </div>
-  );
-};
+      </div>
+    );
+  };
 
   const HousePinInput = ({register,errors,id,type,rules}) =>{
     return(
       <div className="house-pin house-pin-md flex-fill">
         <label htmlFor={id} className="form-label body-2 text-gray-400">物件坪數 <span className="body-2 text-system-accent">*</span></label>
         <input 
-        type={type}
-        id={id} placeholder="物件坪數" 
-        className={`form-control flex-fill ${errors[id] && 'is-invalid'}` }
-        {...register(id, rules)}
-         />
+          type={type}
+          id={id} placeholder="物件坪數" 
+          className={`form-control flex-fill ${errors[id] && 'is-invalid'}` }
+          {...register(id, rules)}
+        />
         {errors[id] && <div id="validationServerUsernameFeedback" className="invalid-feedback">請輸入物件坪數</div>} 
       </div>
     )
@@ -154,11 +160,11 @@ const onSubmit = async (data) => {
       <div className="flex-fill">
         <label htmlFor={id} className="form-label body-2 text-gray-400">物件總坪數 <span className="body-2 text-system-accent">*</span></label>
         <input 
-        type={type}
-        id={id} placeholder="物件總坪數" 
-        className={`form-control ${errors[id] && 'is-invalid'}` }
-        {...register(id, rules)}
-         />
+          type={type}
+          id={id} placeholder="物件總坪數" 
+          className={`form-control ${errors[id] && 'is-invalid'}` }
+          {...register(id, rules)}
+        />
         {errors[id] && <div id="validationServerUsernameFeedback" className="invalid-feedback">請輸入物件總坪數</div>} 
       </div>
     )
@@ -176,14 +182,14 @@ const onSubmit = async (data) => {
         <div className="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
           <div className="btn-group single-select flex-wrap" role="group" aria-label="First group">
             {types.map((item) => (
-            <button
-              key={item}
-              type="button"
-              className={`btn me-8 mb-md-8 ${selectedType === item ? 'btn-outline-act' : 'btn-outline'}`}
-              onClick={() => handleSingleSelect(item)}
-            >
-              {item}</button>
-          ))}
+              <button
+                key={item}
+                type="button"
+                className={`btn me-8 mb-md-8 ${selectedType === item ? 'btn-outline-act' : 'btn-outline'}`}
+                onClick={() => handleSingleSelect(item)}
+              >
+                {item}</button>
+            ))}
           </div>
         </div>
         <input type="hidden" {...register(id)} />
@@ -194,28 +200,28 @@ const onSubmit = async (data) => {
   const watchCity = watch("city");
   const [addressData, setAddressData] = useState([]);
 
-    // 取得地址資料
-    useEffect(() => {
-      setAddressData(addJson);
-    }, []);
-    useEffect(() => {
-      setValue("district", ""); // 當縣市改變，手動清空行政區
-    }, [watchCity, setValue]);
+  // 取得地址資料
+  useEffect(() => {
+    setAddressData(addJson);
+  }, []);
+  useEffect(() => {
+    setValue("district", ""); // 當縣市改變，手動清空行政區
+  }, [watchCity, setValue]);
 
   const SelectAdd = ({ id,register,errors,rules,children,disabled = false }) => {
     return (
       <>
-          <select
-            id={id}
-            className={`form-select state-style ${errors[id] && 'is-invalid'}`}
-            {...register(id, rules)}
-            disabled={disabled}
-          >
-            { children }
-          </select>
-          {errors[id] && (
-            <div className='invalid-feedback'>{errors[id]?.message}</div>
-          )}
+        <select
+          id={id}
+          className={`form-select state-style ${errors[id] && 'is-invalid'}`}
+          {...register(id, rules)}
+          disabled={disabled}
+        >
+          { children }
+        </select>
+        {errors[id] && (
+          <div className='invalid-feedback'>{errors[id]?.message}</div>
+        )}
       </>
     )
   };
@@ -232,13 +238,13 @@ const onSubmit = async (data) => {
       setValue("houseRules", newValues, { shouldValidate: true });
     };
 
-  return (
-    <div className="mb-24 mb-md-16">
-      <label htmlFor="houseRules" className="form-label body-2 text-gray-400">其他 - 房屋守則</label>
-      <input type="hidden" {...register("houseRules")} />
-      <div className="btn-toolbar mb-3" role="toolbar">
-        <div className="btn-group me-2" role="group">
-          {rules.map((rule) => {
+    return (
+      <div className="mb-24 mb-md-16">
+        <label htmlFor="houseRules" className="form-label body-2 text-gray-400">其他 - 房屋守則</label>
+        <input type="hidden" {...register("houseRules")} />
+        <div className="btn-toolbar mb-3" role="toolbar">
+          <div className="btn-group me-2" role="group">
+            {rules.map((rule) => {
               const isActive = selectedRules.includes(rule);
               return (
                 <button
@@ -247,13 +253,13 @@ const onSubmit = async (data) => {
                   className={`btn me-8 ${isActive ? 'btn-outline-act' : 'btn-outline'}`}
                   onClick={() => handleToggle(rule)}
                 >
-                {rule}</button>
+                  {rule}</button>
               );
             })}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
   };
 
   const Furnishings  = () =>{
@@ -264,7 +270,7 @@ const onSubmit = async (data) => {
       const current = selectedFurnishings || [];
       const newValues = current.includes(thing) ? current.filter((t)=> t !== thing)  : [...current, thing];            
       setValue("furnishings", newValues, { shouldValidate: true });
-      };
+    };
 
     return (
       <div className="mb-24 mb-md-16">
@@ -281,7 +287,7 @@ const onSubmit = async (data) => {
                   className={`btn me-8 mb-8 ${isActive ? 'btn-outline-act' : 'btn-outline'}`}
                   onClick={() => handleToggle(thing)}
                 >
-                {thing}</button>
+                  {thing}</button>
               );
             })}
           </div>
@@ -293,30 +299,30 @@ const onSubmit = async (data) => {
     const ages = ['0 - 5 年', '5 - 10 年', '10 - 20 年', '20 - 30 年', '30 年以上'];
 
     return (
-    <div className="mb-24 mb-md-16">
-      <label htmlFor={id} className="form-label body-2 text-gray-400">
-        物件屋齡 <span className="body-2 text-system-accent">*</span>
-      </label>
-      <select 
-        id={id} 
-        className={`form-select ${errors[id] && 'is-invalid'}`}
-        {...register(id, rules)}
-      >
-        <option value="">請選擇屋齡</option>
-        {ages.map((age) => (
-          <option key={age} value={age}>
-            {age}
-          </option>
-        ))}
-      </select>
-      {/* 錯誤訊息提示 */}
-      {errors[id] && (
-        <div className="invalid-feedback">
-          {errors[id]?.message || '請選擇屋齡'}
-        </div>
-      )}
-    </div>
-  );
+      <div className="mb-24 mb-md-16">
+        <label htmlFor={id} className="form-label body-2 text-gray-400">
+          物件屋齡 <span className="body-2 text-system-accent">*</span>
+        </label>
+        <select 
+          id={id} 
+          className={`form-select ${errors[id] && 'is-invalid'}`}
+          {...register(id, rules)}
+        >
+          <option value="">請選擇屋齡</option>
+          {ages.map((age) => (
+            <option key={age} value={age}>
+              {age}
+            </option>
+          ))}
+        </select>
+        {/* 錯誤訊息提示 */}
+        {errors[id] && (
+          <div className="invalid-feedback">
+            {errors[id]?.message || '請選擇屋齡'}
+          </div>
+        )}
+      </div>
+    );
   };
 
   const RentInput = ({register,errors,id,type,rules}) =>{
@@ -324,16 +330,16 @@ const onSubmit = async (data) => {
       <div className="mb-24 me-24 flex-fill mb-md-8 objectSqm-md-0">
         <label htmlFor={id} className="form-label body-2 text-gray-400">物件租金 (月) <span className="body-2 text-system-accent">*</span></label>
         <input 
-        type={type}
-        id={id} placeholder="輸入物件租金" 
-        className={`form-control flex-fill ${errors[id] && 'is-invalid'}` }
-        {...register(id, rules)}
-         />
+          type={type}
+          id={id} placeholder="輸入物件租金" 
+          className={`form-control flex-fill ${errors[id] && 'is-invalid'}` }
+          {...register(id, rules)}
+        />
         {errors[id] && (
-        <div className="invalid-feedback">
-          {errors[id]?.message || '請輸入物件租金'}
-        </div>
-      )}
+          <div className="invalid-feedback">
+            {errors[id]?.message || '請輸入物件租金'}
+          </div>
+        )}
       </div>
     )
   };
@@ -343,11 +349,11 @@ const onSubmit = async (data) => {
       <div className="mb-24 flex-fill mb-md-0">
         <label htmlFor={id} className="form-label body-2 text-gray-400">物件管理費 <span className="body-2 text-system-accent">*</span></label>
         <input 
-        type={type}
-        id={id} placeholder="輸入物件管理費" 
-        className={`form-control ${errors[id] && 'is-invalid'}` }
-        {...register(id, rules)}
-         />
+          type={type}
+          id={id} placeholder="輸入物件管理費" 
+          className={`form-control ${errors[id] && 'is-invalid'}` }
+          {...register(id, rules)}
+        />
         {errors[id] && (<div className="invalid-feedback">{errors[id]?.message || '請輸入物件管理費'}</div>)}
       </div>
     )
@@ -358,11 +364,11 @@ const onSubmit = async (data) => {
       <div className="mb-24 flex-fill contact-name">
         <label htmlFor={id} className="form-label body-2 text-gray-400">聯絡人 <span className="body-2 text-system-accent">*</span></label>
         <input 
-        type={type}
-        id={id} placeholder="輸入聯絡人姓名" 
-        className={`form-control flex-fill ${errors[id] && 'is-invalid'}` }
-        {...register(id, rules)}
-         />
+          type={type}
+          id={id} placeholder="輸入聯絡人姓名" 
+          className={`form-control flex-fill ${errors[id] && 'is-invalid'}` }
+          {...register(id, rules)}
+        />
         {errors[id] && (<div className="invalid-feedback">{errors[id]?.message || '請輸入聯絡人姓名'}</div>)}
       </div>
     )
@@ -373,11 +379,11 @@ const onSubmit = async (data) => {
       <div className="mb-24 flex-fill mb-md-0">
         <label htmlFor={id} className="form-label body-2 text-gray-400">聯絡電話 <span className="body-2 text-system-accent">*</span></label>
         <input 
-        type={type}
-        id={id} placeholder="輸入聯絡電話" 
-        className={`form-control flex-fill ${errors[id] && 'is-invalid'}` }
-        {...register(id, rules)}
-         />
+          type={type}
+          id={id} placeholder="輸入聯絡電話" 
+          className={`form-control flex-fill ${errors[id] && 'is-invalid'}` }
+          {...register(id, rules)}
+        />
         {errors[id] && (<div className="invalid-feedback">{errors[id]?.message || '請輸入聯絡電話'}</div>)}
       </div>
     )
@@ -439,16 +445,16 @@ const onSubmit = async (data) => {
             物件圖片 <span className="body-2 text-system-accent">*</span>
           </label>
 
-              <ImageUpload 
-                id="images" 
-                register={register} 
-                setValue={setValue} 
-                watch={watch} 
-                rules={{ 
-                  required: '請至少上傳一張圖片',
-                  validate: (value) => value.length <= 5 || '最多只能上傳 5 張圖片'
-                }}
-              />
+          <ImageUpload 
+            id="images" 
+            register={register} 
+            setValue={setValue} 
+            watch={watch} 
+            rules={{ 
+              required: '請至少上傳一張圖片',
+              validate: (value) => value.length <= 5 || '最多只能上傳 5 張圖片'
+            }}
+          />
         </div>
 
         {/* 物件地址 */}
@@ -532,7 +538,7 @@ const onSubmit = async (data) => {
           className="btn addHouses-btn h6 text-primary-500 m-0 w-100 w-md-auto d-flex justify-center align-center"
         >
           儲存刊登屋件資訊
-          <img src="/ManagerImages/Icons-correct.svg" alt="Icons-correct" className="ms-16" />
+          <img src={`${pUrl}ManagerImages/Icons-correct.svg`} alt="Icons-correct" className="ms-16" />
         </button>
       </div>
       

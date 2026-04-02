@@ -58,7 +58,7 @@ function PropertyListPage() {
       }
     };
     fetchProperties();
-  },[]);
+  },[dispatch]);
 
   // 監聽 currentPage，只要頁碼改變，就把視窗滾到最上面
   useEffect(()=>{

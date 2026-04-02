@@ -1,0 +1,24 @@
+@use "sass:color";
+
+.custom-login-button {
+  background-color: #f5d1a9;
+  border-color: #f5d1a9;
+  color: #6F5D42;
+  cursor:pointer;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+
+  @include media-breakpoint-up(md) {
+    &:hover {
+      transform: translateY(-3px);
+      background-color: color.adjust(#f5d1a9, $lightness: -15%);
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &:active {
+      transform: translateY(2px);
+      background-color: color.adjust(#f5d1a9, $lightness: -15%);
+    }
+  }
+}

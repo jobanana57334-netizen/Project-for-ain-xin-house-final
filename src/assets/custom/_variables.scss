@@ -3,11 +3,9 @@ $primary-200: #fbf4e4;
 $primary-300: #f5e0bd;
 $primary-400: #d4ab6a;
 $primary-500: #6f5d42;
-
 $system-sub: #80a5b8;
 $system-accent: #c1521d;
-
-$white: #ffffff;
+$white: #fff; // 這裡改成縮排
 $gray-100: #d5d5d5;
 $gray-200: #ababab;
 $gray-300: #808080;
@@ -29,6 +27,8 @@ $colors: (
   "gray-400": $gray-400,
   "gray-500": $gray-500,
 );
+
+// 這裡確保有一行空行
 :root {
   @each $name, $color in $colors {
     --color-#{$name}: #{$color};

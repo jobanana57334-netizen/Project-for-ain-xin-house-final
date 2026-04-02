@@ -8,10 +8,10 @@ import messageReducer from './MessageSlice';
 // 因為它就是接收了你在 MessageSlice.js 預設匯出的那個 MessageSlice.reducer。
 
 const store = configureStore({
-    reducer:{
-        // 把訊息message交由被賦予messageReducer(將./MessageSlice路徑命名)來管理
-        message: messageReducer
-    }
+  reducer:{
+    // 把訊息message交由被賦予messageReducer(將./MessageSlice路徑命名)來管理
+    message: messageReducer
+  }
 })
 
 export default store;

@@ -70,43 +70,54 @@
 .d-flex {
   display: flex !important;
 }
+
 .d-none {
   display: none !important;
 }
+
 .d-block {
   display: block !important;
 }
 
-@media (min-width: 768px) {
+@media (width <= 768px) {
   .d-md-flex {
     display: flex !important;
   }
+
   .d-md-none {
     display: none !important;
   }
+
   .d-md-block {
     display: block !important;
   }
+
 }
 
 .justify-content-between {
   justify-content: space-between !important;
 }
+
 .justify-content-center {
   justify-content: center !important;
 }
+
 .align-items-center {
   align-items: center !important;
 }
+
 .align-items-start {
   align-items: flex-start !important;
 }
+
 .flex-column {
   flex-direction: column !important;
 }
+
 .align-middle {
   vertical-align: middle !important;
 }
+
 .cursor-pointer {
   cursor: pointer !important;
 }

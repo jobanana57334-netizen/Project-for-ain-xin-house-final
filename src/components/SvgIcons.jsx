@@ -1,58 +1,61 @@
-import React from 'react';
+
+// 💡 1. 引入 pUrl (請依您的資料夾層級調整，例如 '../utils/constants')
+import { pUrl } from '../utils/constants';
 
 const SvgIcon = ({ 
-    name, 
-    prefix = 'icon', 
-    color = 'currentColor', 
-    width = '1em', 
-    height = '1em', 
-    className = '',
-    isPublic = false // 🌟 新增這個開關，預設為 false (不影響原本的寫法)
+  name, 
+  prefix = 'icon', 
+  color = 'currentColor', 
+  width = '1em', 
+  height = '1em', 
+  className = '',
+  isPublic = false 
 }) => {
     
-    // ==========================================
-    // 模式 A：我們新加的 Public Mask 模式 (適合放在 public 資料夾的圖片)
-    // ==========================================
-    if (isPublic) {
-        // 假設圖片放在 public/ManagerImages/
-        const imgUrl = `/ManagerImages/${name}.svg`;
-        return (
-            <span
-                className={className}
-                aria-hidden="true"
-                style={{
-                    display: 'inline-block',
-                    width: width,
-                    height: height,
-                    backgroundColor: color, // 控制顏色
-                    WebkitMaskImage: `url(${imgUrl})`,
-                    WebkitMaskSize: 'contain',
-                    WebkitMaskRepeat: 'no-repeat',
-                    WebkitMaskPosition: 'center',
-                    maskImage: `url(${imgUrl})`,
-                    maskSize: 'contain',
-                    maskRepeat: 'no-repeat',
-                    maskPosition: 'center',
-                }}
-            />
-        );
-    }
-
-    // ==========================================
-    // 模式 B：原作者的 SVG Sprite 模式 (完全保留，保證不衝突)
-    // ==========================================
-    const symbolId = `#${prefix}-${name}`;
+  // ==========================================
+  // 模式 A：我們新加的 Public Mask 模式 (適合放在 public 資料夾的圖片)
+  // ==========================================
+  if (isPublic) {
+    // 💡 2. 加上 pUrl，並拔除 ManagerImages 前面的斜線，避免產生雙斜線 (//)
+    const imgUrl = `${pUrl}ManagerImages/${name}.svg`;
+        
     return (
-        <svg 
-            width={width} 
-            height={height} 
-            className={className} 
-            aria-hidden="true"
-            style={{ fill: color, color: color }}
-        >
-            <use href={symbolId} />
-        </svg>
+      <span
+        className={className}
+        aria-hidden="true"
+        style={{
+          display: 'inline-block',
+          width: width,
+          height: height,
+          backgroundColor: color, 
+          WebkitMaskImage: `url(${imgUrl})`,
+          WebkitMaskSize: 'contain',
+          WebkitMaskRepeat: 'no-repeat',
+          WebkitMaskPosition: 'center',
+          maskImage: `url(${imgUrl})`,
+          maskSize: 'contain',
+          maskRepeat: 'no-repeat',
+          maskPosition: 'center',
+        }}
+      />
     );
+  }
+
+  // ==========================================
+  // 模式 B：原作者的 SVG Sprite 模式 (完全保留，保證不衝突)
+  // ==========================================
+  const symbolId = `#${prefix}-${name}`;
+  return (
+    <svg 
+      width={width} 
+      height={height} 
+      className={className} 
+      aria-hidden="true"
+      style={{ fill: color, color: color }}
+    >
+      <use href={symbolId} />
+    </svg>
+  );
 };
 
 export default SvgIcon;

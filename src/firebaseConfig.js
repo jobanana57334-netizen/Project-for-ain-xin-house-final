@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
+
 import {getStorage} from 'firebase/storage';
 import { getAuth } from "firebase/auth";
 // 這裡填入你在 Firebase 控制台看到的 Web 配置內容

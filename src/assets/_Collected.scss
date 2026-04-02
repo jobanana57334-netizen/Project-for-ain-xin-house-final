@@ -1,0 +1,14 @@
+.favorite-card-hover {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.favorite-card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgb(0 0 0 / 8%) !important;
+}
+
+.btn-favorite-remove:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+}

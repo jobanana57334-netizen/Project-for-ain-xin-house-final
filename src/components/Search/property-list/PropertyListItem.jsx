@@ -1,30 +1,39 @@
-
 import { Link } from "react-router-dom";
 import SvgIcons from '../../../components/SvgIcons';
+// 💡 1. 引入 pUrl (請確認這個相對路徑是否正確，可能需要 ../../ 調整)
+import { pUrl } from '../../../utils/constants'; 
 
-// 新增接收 onFavorite 和 isUpdating 這兩個 props
 function PropertyListItem({ property }) {
   if (!property) return null;
 
+  // 💡 2. 建立處理圖片網址的函式 (跟剛剛一模一樣)
+  const getImageUrl = (imgStr) => {
+    if (!imgStr) return '';
+    // 如果圖片已經是完整的外部網址，直接回傳
+    if (imgStr.startsWith('http')) {
+      return imgStr;
+    }
+    // 如果是本地端路徑，接上 pUrl 並拔除開頭的斜線
+    return `${pUrl}${imgStr.replace(/^\//, '')}`;
+  };
 
   return (
-      <Link 
-        to={`/item/${property.id}`}
-        style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
-      >
+    <Link 
+      to={`/item/${property.id}`}
+      style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}
+    >
       <article className="property-card">
         <div className="property-card__image-wrap">
+          {/* 💡 3. 套用 getImageUrl 來過濾 property.img */}
           <img
-            src={property.img}
+            src={getImageUrl(property.img)}
             alt={property.title}
             className="property-card__image"
           />
         </div>
 
         <div className="property-card__content">
-                    {/* 修改 1 & 2：變數改為 property，並換成剛才寫好的 handleFavoriteClick */}
-
-                    {/* 新增一個 Flex 容器包覆頂部資訊 */}
+          {/* 新增一個 Flex 容器包覆頂部資訊 */}
           <div style={{ 
             display: 'flex', 
             justifyContent: 'space-between', 
@@ -45,31 +54,30 @@ function PropertyListItem({ property }) {
               </p>
             </div>
 
-
           </div>
 
           <ul className="property-card__meta">
             <li>
               <SvgIcons
-              name='home-housesItem'
-              color="#F5E0BD"
-              style={{width: "24px",height:"24px"}}/>
+                name='home-housesItem'
+                color="#F5E0BD"
+                style={{width: "24px",height:"24px"}}/>
               {property.layout?.room}房 {property.layout?.hall}廳 {property.layout?.bathroom}衛
             </li>
             
             <li>
               <SvgIcons
-              name='home-location'
-              color="#F5E0BD"
-              style={{width: "24px",height:"24px"}}/>
+                name='home-location'
+                color="#F5E0BD"
+                style={{width: "24px",height:"24px"}}/>
               {property.size} 坪
             </li>
             
             <li>
               <SvgIcons
-              name='home-have'
-              color="#F5E0BD"
-              style={{width: "24px",height:"24px"}}/>
+                name='home-have'
+                color="#F5E0BD"
+                style={{width: "24px",height:"24px"}}/>
               樓層：{property.floorInfo?.current} / {property.floorInfo?.total}F
             </li>
           </ul>

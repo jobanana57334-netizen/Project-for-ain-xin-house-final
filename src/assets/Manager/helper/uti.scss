@@ -1,773 +1,969 @@
 /* 房屋資訊樣式 */
-.ManagerHouse{
-    
-/* 1. 如果你在外部已經使用了 Bootstrap 的 container-xl，這裡自定義的 .container 可以改成 100% 滿版，
-       或者把 max-width 放寬，讓它隨著外部容器自然伸展。 */
-    .container {
-        width: 100%; /* 確保它填滿父容器 (也就是右側的 content-area) */
-        max-width: 100%; /* 移除 1920px 的絕對限制，交給最外層的 container-xl 決定 */
-        margin: 0 auto;
-        padding-left: 0; /* 移除左右多餘的內縮，把空間還給表單 */
-        padding-right: 0;
-        font-family: "Noto Sans TC", sans-serif;
-        background-color: transparent; /* 建議這裡用透明，讓卡片自己定義背景色 */
-    }
-    .bg-color{
-        background-color: var(--primary-100);
-        height: 600px;
-    }
-    .d-flex{
-        display: flex;
-    }
-    .d-none{
-        display: none;
-    }
-    .d-block{
-        display: block;
-    }
-    .text-center{
-        text-align: center;
-    }
-    .text-start {
+.ManagerHouse {
+  /* 1. 如果你在外部已經使用了 Bootstrap 的 container-xl，這裡自定義的 .container 可以改成 100% 滿版 */
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 0;
+    padding-right: 0;
+    font-family: "Noto Sans TC", sans-serif;
+    background-color: transparent;
+  }
+
+  .bg-color {
+    background-color: var(--primary-100);
+    height: 600px;
+  }
+
+  .d-flex {
+    display: flex;
+  }
+
+  .d-none {
+    display: none;
+  }
+
+  .d-block {
+    display: block;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .text-start {
     text-align: left;
-    }
-    .text-end {
+  }
+
+  .text-end {
     text-align: right;
+  }
+
+  /* ========== 桌機版以上 (>=768px) ========== */
+  @include media-breakpoint-up(md) {
+    .text-md-start {
+      text-align: left;
     }
-    @media(min-width:767px){
-        .text-md-start {
-            text-align: left;
-    }
+
     .text-md-end {
-            text-align: right;
+      text-align: right;
     }
-    
-    }
-    @media(max-width:767px){
-        .d-md-block{
-            display: block;
-        }
-        .d-md-flex{
-            display: flex;
-        }
-        .d-md-none{
-            display: none;
-        }
-    }
-    @media(max-width:576px){
-        .d-sm-block{
-            display: block;
-        }
-        .d-sm-none{
-            display: none;
-        }
-        .text-sm-center{
-            text-align: center;
-        }
-    }
-    @media(min-width:576px){
-        .d-min-none{
-            display: none;
-        }
-    }
-    .align-center{
-        align-items: center;
-    }
-    .justify-between{
-        justify-content: space-between;
-    }
-    .justify-center{
-        justify-content: center;
-    }
-    .justify-end{
-        justify-content: end;
-    }
-    .flex-wrap{
-        flex-wrap: wrap;
-    }
-    .ta-right{
-        text-align: right;
+  }
+
+  /* ========== 平板/手機版以下 (<=767px) ========== */
+  @include media-breakpoint-down(md) {
+    .d-md-block {
+      display: block;
     }
 
-    .row{
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 auto;
-        margin-top: 60px;
-        margin-bottom: 60px;
-    }
-    @media(max-width:767px){
-        .flex-md-nowrap {
-            flex-wrap: nowrap;
-        }
-        .flex-md-wrap {
-            flex-wrap: wrap;
-        }
-        .row-select-md{
-            margin-left: 0;
-            margin-right: 0;
-        }
-        .row{
-        margin-top: 48px;
-        margin-bottom: 48px;
-    }
-    }
-    .col-1{
-        padding-left: 12px;
-        padding-right: 12px;
-        width: calc(100% / 12);
-    }
-    .col-2{
-        padding-left: 12px;
-        padding-right: 12px;
-        width: calc(100% / 12* 2);
-    }
-    .col-3{
-        padding-left: 12px;
-        padding-right: 12px;
-        width: calc(100% / 12* 3);
-    }
-    .col-4{
-        padding-left: 12px;
-        padding-right: 12px;
-        width: calc(100% / 12* 4);
-    }
-    .col-5{
-        padding-left: 12px;
-        padding-right: 12px;
-        width: calc(100% / 12* 5);
-    }
-    .col-6{
-        padding-left: 12px;
-        padding-right: 12px;
-        width: calc(100% / 12* 6);
-    }
-    .col-7{
-        padding-left: 12px;
-        padding-right: 12px;
-        width: calc(100% / 12* 7);
-    }
-    .col-8{
-        padding-left: 12px;
-        padding-right: 12px;
-        width: calc(100% / 12* 8);
-    }
-    .col-9{
-        padding-left: 12px;
-        padding-right: 12px;
-        width: calc(100% / 12* 9);
-    }
-    .col-12{
-        width: 100%;
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-    @media(max-width:767px){
-        
-        .col-md-1{
-            padding-left: 6px;
-            padding-right: 6px;
-            width: calc(100% / 4);
-        }
-        .col-md-2{
-            padding-left: 6px;
-            padding-right: 6px;
-            width: calc(100% / 4*2);
-        }
-        .col-md-3{
-            padding-left: 6px;
-            padding-right: 6px;
-            width: calc(100% / 4*3);
-        }
-        .col-md-4{
-            width: 100%;
-        }
-        .flex-md-column{
-            flex-direction: column;
-        }
-        .flex-md-nowrap{
-            flex-wrap: nowrap;
-        }
-        .gap-md-4{
-            gap: 4px;
-        }
-        .gap-md-8{
-            gap: 8px;
-        }
-        .overflow-x-md-auto{
-            overflow-x: auto;
-        }
-        .flex-md-column{
-            flex-direction: column;
-        }
-    }
-    .gap-8{
-        gap: 8px;
+    .d-md-flex {
+      display: flex;
     }
 
-    .h1{
-        font-size: 40px;
-        line-height: 1.2;
-        font-weight: 700;
+    .d-md-none {
+      display: none;
     }
-    .h2{
-        font-size: 32px;
-        line-height: 1.2;
-        font-weight: 700;
-    }
-    .h3{
-        font-size: 28px;
-        line-height: 1.2;
-        font-weight: 700;
-    }
-    .h4{
-        font-size: 24px;
-        line-height: 1.2;
-        font-weight: 700;
-    }
-    .h5{
-        font-size: 20px;
-        line-height: 1.2;
-        font-weight: 700;
-    }
-    .h6{
-        font-size: 16px;
-        line-height: 1.2;
-        font-weight: 500;
-    }
-    .h7{
-        font-size: 14 px;
-        line-height: 1.2;
-        font-weight: 700;
-    }
-    .body-2{
-        font-size: 16px;
-        line-height: 1.5;
-        font-weight: 400;
-    }
-    .md{
-        font-size: 16px;
-        line-height: 1.5;
-        font-weight: 500;
-    }
-    .fs-6{
-        font-size: 16px;
-        line-height: 1.5;
-        font-weight: 400;
-    }
-    .fs-7{
-        font-size: 14px;
-        line-height: 1.5;
-        font-weight: 400;
-    }
-    @media (max-width: 767px){
-        .h2-md{
-            font-size: 32px;
-        }
-        .h3-md{
-            font-size: 28px;
-        }
-        .h4-md{
-            font-size: 24px;
-        }
-        .h5-md{
-            font-size: 20px;
-        }
-        .h6-md{
-            font-size: 16px;
-        }
-        .sm{
-        font-size: 14px;
-        line-height: 1.5;
-        font-weight: 400;
-    }
-    }
-    @media (max-width: 576px){
-        .h3-sm{
-            font-size: 28px;
-        }
-        .h4-sm{
-            font-size: 24px;
-        }
-        .h5-sm{
-            font-size: 20px;
-        }
-        .h6-sm{
-            font-size: 16px;
-        }
+  }
+
+  /* ========== 小手機版以下 (<=576px) ========== */
+  @include media-breakpoint-down(sm) {
+    .d-sm-block {
+      display: block;
     }
 
-    .text-sm{
-        font-size: 14px;
-    }
-    .text-lg{
-        font-size: 20px;
-    }
-    @media (max-width: 767px){
-        .text-md-md{
-        font-size: 16px;
-    }    
-    }
-    .text-white{
-        color:var(--primary-0);
-    }
-    .text-primary-100{
-        color: var(--primary-100);
-    }
-    .text-primary-200{
-        color: var(--primary-200);
-    }
-    .text-primary-300{
-        color: var(--primary-300);
-    }
-    .text-primary-400{
-        color: var(--primary-400);
-    }
-    .text-primary-500{
-        color: var(--primary-500);
-    }
-    .text-gray-100{
-        color: var(--gray-100);
-    }
-    .text-gray-200{
-        color: var(--gray-200);
-    }
-    .text-gray-300{
-        color: var(--gray-300);
-    }
-    .text-gray-400{
-        color: var(--gray-400);
-    }
-    .text-gray-500{
-        color: var(--gray-500);
+    .d-sm-none {
+      display: none;
     }
 
-    .text-system-sub{
-        color: var(--system-sub);
+    .text-sm-center {
+      text-align: center;
     }
-    .text-system-accent{
-        color: var(--system-accent);
+  }
+
+  /* ========== 小手機版以上 (>=576px) ========== */
+  @include media-breakpoint-up(sm) {
+    .d-min-none {
+      display: none;
     }
-    .hr{
+  }
+
+  .align-center {
+    align-items: center;
+  }
+
+  .justify-between {
+    justify-content: space-between;
+  }
+
+  .justify-center {
+    justify-content: center;
+  }
+
+  .justify-end {
+    justify-content: end;
+  }
+
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .ta-right {
+    text-align: right;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  @include media-breakpoint-down(md) {
+    .flex-md-nowrap {
+      flex-wrap: nowrap;
+    }
+
+    .flex-md-wrap {
+      flex-wrap: wrap;
+    }
+
+    .row-select-md {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .row {
+      margin-top: 48px;
+      margin-bottom: 48px;
+    }
+  }
+
+  /* ========== 網格系統 ========== */
+  .col-1 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% / 12);
+  }
+
+  .col-2 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% / 12 * 2);
+  }
+
+  .col-3 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% / 12 * 3);
+  }
+
+  .col-4 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% / 12 * 4);
+  }
+
+  .col-5 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% / 12 * 5);
+  }
+
+  .col-6 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% / 12 * 6);
+  }
+
+  .col-7 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% / 12 * 7);
+  }
+
+  .col-8 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% / 12 * 8);
+  }
+
+  .col-9 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: calc(100% / 12 * 9);
+  }
+
+  .col-12 {
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  @include media-breakpoint-down(md) {
+    .col-md-1 {
+      padding-left: 6px;
+      padding-right: 6px;
+      width: calc(100% / 4);
+    }
+
+    .col-md-2 {
+      padding-left: 6px;
+      padding-right: 6px;
+      width: calc(100% / 4 * 2);
+    }
+
+    .col-md-3 {
+      padding-left: 6px;
+      padding-right: 6px;
+      width: calc(100% / 4 * 3);
+    }
+
+    .col-md-4 {
+      width: 100%;
+    }
+
+    .flex-md-column {
+      flex-direction: column;
+    }
+
+    .flex-md-nowrap {
+      flex-wrap: nowrap;
+    }
+
+    .gap-md-4 {
+      gap: 4px;
+    }
+
+    .gap-md-8 {
+      gap: 8px;
+    }
+
+    .overflow-x-md-auto {
+      overflow-x: auto;
+    }
+  }
+
+  .gap-8 {
+    gap: 8px;
+  }
+
+  /* ========== typography ========== */
+  .h1 {
+    font-size: 40px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .h2 {
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .h3 {
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .h4 {
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .h5 {
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .h6 {
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .h7 {
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .body-2 {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .md {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .fs-6 {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .fs-7 {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  @include media-breakpoint-down(md) {
+    .h2-md {
+      font-size: 32px;
+    }
+
+    .h3-md {
+      font-size: 28px;
+    }
+
+    .h4-md {
+      font-size: 24px;
+    }
+
+    .h5-md {
+      font-size: 20px;
+    }
+
+    .h6-md {
+      font-size: 16px;
+    }
+
+    .sm {
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    .text-md-md {
+      font-size: 16px;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .h3-sm {
+      font-size: 28px;
+    }
+
+    .h4-sm {
+      font-size: 24px;
+    }
+
+    .h5-sm {
+      font-size: 20px;
+    }
+
+    .h6-sm {
+      font-size: 16px;
+    }
+  }
+
+  .text-sm {
+    font-size: 14px;
+  }
+
+  .text-lg {
+    font-size: 20px;
+  }
+
+  /* ========== 顏色 ========== */
+  .text-white {
+    color: var(--primary-0);
+  }
+
+  .text-primary-100 {
+    color: var(--primary-100);
+  }
+
+  .text-primary-200 {
+    color: var(--primary-200);
+  }
+
+  .text-primary-300 {
+    color: var(--primary-300);
+  }
+
+  .text-primary-400 {
+    color: var(--primary-400);
+  }
+
+  .text-primary-500 {
+    color: var(--primary-500);
+  }
+
+  .text-gray-100 {
     color: var(--gray-100);
-    margin: 0px; 
+  }
+
+  .text-gray-200 {
+    color: var(--gray-200);
+  }
+
+  .text-gray-300 {
+    color: var(--gray-300);
+  }
+
+  .text-gray-400 {
+    color: var(--gray-400);
+  }
+
+  .text-gray-500 {
+    color: var(--gray-500);
+  }
+
+  .text-system-sub {
+    color: var(--system-sub);
+  }
+
+  .text-system-accent {
+    color: var(--system-accent);
+  }
+
+  .hr {
+    color: var(--gray-100);
+    margin: 0;
     width: 306px;
-    }
-    .bg-primary-white{
-        background-color: var(--primary-0);
-    }
-    .bg-primary-100{
-        background-color: var(--primary-100);
-    }
-    .bg-primary-200{
-        background-color: var(--primary-200);
-    }
-    .p-8{
-        padding: 8px;
-    }
-    .p-12{
-        padding: 12px;
-    }
-    .p-36{
-        padding: 36px;
-    }
-    .pt-16{
-        padding-top: 16px;
-    }
-    .pt-32{
-        padding-top: 32px;
-    }
-    .pt-64{
-        padding-top: 64px;
-    }
-    .pb-24{
-        padding-bottom: 24px;
-    }
-    .pb-48{
-        padding-bottom: 48px;
-    }
-    .py-8{
-        padding-top: 8px;
-        padding-bottom: 8px;
-    }
-    .py-12{
-        padding-top: 12px;
-        padding-bottom: 12px;
-    }
-    .py-16{
-        padding-top: 16px;
-        padding-bottom: 16px;
-    }
-    .py-18{
-        padding-top: 18px;
-        padding-bottom: 18px;
-    }
-    .py-20{
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
-    .py-24{
-        padding-top: 24px;
-        padding-bottom: 24px;
-    }
-    .py-32{
-        padding-top: 32px;
-        padding-bottom: 32px;
-    }
-    .py-36{
-        padding-top: 36px;
-        padding-bottom: 36px;
-    }
-    .py-48{
-        padding-top: 48px;
-        padding-bottom: 48px;
-    }
-    .py-64{
-        padding-top: 64px;
-        padding-bottom: 64px;
-    }
-    .py-69{
-        padding-top: 69px;
-        padding-bottom: 69px;
-    }
-    .ps-20{
-        padding-left: 20px;
-    }
-    .pe-8{
-        padding-right: 8px;
-    }
-    .pe-12{
-        padding-left: 12px;
-    }
-    .px-12{
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-    .px-20{
-        padding-right: 20px;
-        padding-left: 20px;
-    }
-    .px-24{
-        padding-right: 24px;
-        padding-left: 24px;
-    }
-    .pt-40{
-        padding-top: 40px;
-    }
-    @media(max-width: 767px){
-        .p-md-0{
-            padding: 0px;
-        }
-        .py-md-8{
-        padding-top: 8px;
-        padding-bottom: 8px;
-        }
-        .p-md-16{
-            padding: 16px;
-        }
-        .py-md-14{
-            padding-top: 14px;
-            padding-bottom: 14px;
-        }
-        .py-md-16{
-            padding-top: 16px;
-            padding-bottom: 16px;
-        }
-        .py-md-24{
-            padding-top: 24px;
-            padding-bottom: 24px;
-        }
-        .py-md-32{
-            padding-top: 32px;
-            padding-bottom: 32px;
-        }
-        .pt-md-8{
-            padding-top: 8px;
-        }
-        .pt-md-10{
-            padding-top: 10px;
-        }
-        .pb-md-32{
-            padding-bottom: 32px;
-        }
-        .py-md-40{
-            padding-top: 40px;
-            padding-bottom: 40px;
-        }
-        .py-md-095{
-            padding-top: 9.5px;
-            padding-bottom: 9.5px;
-        }
+  }
+
+  .bg-primary-white {
+    background-color: var(--primary-0);
+  }
+
+  .bg-primary-100 {
+    background-color: var(--primary-100);
+  }
+
+  .bg-primary-200 {
+    background-color: var(--primary-200);
+  }
+
+  /* ========== Padding ========== */
+  .p-8 {
+    padding: 8px;
+  }
+
+  .p-12 {
+    padding: 12px;
+  }
+
+  .p-36 {
+    padding: 36px;
+  }
+
+  .pt-16 {
+    padding-top: 16px;
+  }
+
+  .pt-32 {
+    padding-top: 32px;
+  }
+
+  .pt-40 {
+    padding-top: 40px;
+  }
+
+  .pt-64 {
+    padding-top: 64px;
+  }
+
+  .pb-24 {
+    padding-bottom: 24px;
+  }
+
+  .pb-48 {
+    padding-bottom: 48px;
+  }
+
+  .py-8 {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .py-12 {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .py-16 {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .py-18 {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .py-20 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .py-24 {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .py-32 {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .py-36 {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+
+  .py-48 {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .py-64 {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .py-69 {
+    padding-top: 69px;
+    padding-bottom: 69px;
+  }
+
+  .ps-20 {
+    padding-left: 20px;
+  }
+
+  .pe-8 {
+    padding-right: 8px;
+  }
+
+  .pe-12 {
+    padding-left: 12px;
+  }
+
+  .px-12 {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .px-20 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .px-24 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  @include media-breakpoint-down(md) {
+    .p-md-0 {
+      padding: 0;
     }
 
-    @media (max-width: 576px){
-        .px-sm-12{
-            padding-left: 12px;
-            padding-right: 12px;
-        }
-        .px-sm-16{
-            padding-left: 16px;
-            padding-right: 16px;
-        }
-        .py-sm-12{
-            padding-top: 12px;
-            padding-bottom: 12px;
-        }
-        .py-sm-32{
-            padding-top: 32px;
-            padding-bottom: 32px;
-        }
-        .py-sm-40{
-            padding-top: 40px;
-            padding-bottom: 40px;
-        }
-        .py-sm-0{
-            padding-top: 0px;
-            padding-bottom: 0px;
-        }
+    .p-md-16 {
+      padding: 16px;
     }
 
-    .me-8{
-        margin-right: 8px;
-    }
-    .m-12{
-        margin: 12px;
-    }
-    .ms-16{
-        margin-left: 16px;
-    }
-    .ms-95{
-        margin-left: 95px;
-    }
-    .me-12{
-        margin-right: 12px;
-    }
-    .me-16{
-        margin-right: 16px;
+    .py-md-8 {
+      padding-top: 8px;
+      padding-bottom: 8px;
     }
 
-    .me-24{
-        margin-right: 24px;
-    }
-    .me-40{
-        margin-right: 40px;
-    }
-    .me-48{
-        margin-right: 48px;
-    }
-    .me-136{
-        margin-right: 136px;
-    }
-    .me-125{
-        margin-left: 125px;
-    }
-    .me-159{
-        margin-right: 159px;
-    }
-    .me-280{
-        margin-right: 280px;
-    }
-    .mt-16{
-        margin-top: 16px;
-    }
-    .mt-20{
-        margin-top: 20px;
-    }
-    .mt-40{
-        margin-top: 40px;
-    }
-    .mb-4{
-        margin-bottom: 4px;
-    }
-    .mb-8{
-        margin-bottom: 8px;
-    }
-    .mb-12{
-        margin-bottom: 12px;
-    }
-    .mb-16{
-        margin-bottom: 16px;
-    }
-    .mb-20{
-        margin-bottom: 20px;
-    }
-    .mb-24{
-        margin-bottom: 24px;
-    }
-    .mb-32{
-        margin-bottom: 32px;
-    }
-    .mb-40{
-        margin-bottom: 40px;
-    }
-    .mb-48{
-        margin-bottom: 48px;
-    }
-    .m-0{
-        margin: 0 auto;
-    }
-    .m8{
-        margin: 8px;
+    .py-md-14 {
+      padding-top: 14px;
+      padding-bottom: 14px;
     }
 
-    .mx-12{
-        margin-right: 12px;
-        margin-left: 12px;
-    }
-    .mx-64{
-        margin-right: 64px;
-        margin-left: 64px;
-    }
-    .my-12{
-        margin-top: 12px;
-        margin-bottom: 12px;
-    }
-    .my-14{
-        margin-top: 14px;
-        margin-bottom: 14px;
-    }
-    .my-20{
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-    .my-24{
-        margin-top: 24px;
-        margin-bottom: 24px;
-    }
-    .my-60{
-        margin-top: 60px;
-        margin-bottom: 60px;
-    }
-    .mt-48{
-        margin-top: 48px;
-    }
-    @media(max-width: 767px){
-        .m-md-0{
-            margin-right: 0 auto;
-            margin-left: 0 auto;
-        }
-        .m-md-6{
-            margin-right: 6px;
-            margin-left: 6px;
-        }
-        .mb-md-0{
-            margin-bottom: 0;
-        }
-        .mb-md-8{
-            margin-bottom: 8px;
-        }
-        .mb-md-12{
-            margin-bottom: 12px;
-        }
-        .mb-md-16{
-            margin-bottom: 16px;
-        }
-        .mb-md-20{
-            margin-bottom: 20px;
-        }
-        .mb-md-24{
-            margin-bottom: 24px;
-        }
-        .mb-md-30{
-            margin-bottom: 30px;
-        }
-        .mb-md-36{
-            margin-bottom: 36px;
-        }
-        .mt-md-6{
-            margin-top: 6px;
-        }
-        .mt-md-10{
-            margin-top: 10px;
-        }
-        .mt-md-16{
-            margin-top: 16px;
-        }
-        .mt-md-30{
-            margin-top: 30px;
-        }
-        .mt-md-32{
-            margin-top: 32px;
-        }
-        .ms-md-95{
-            margin-left: 95px;
-        }
-        .me-md-0{
-            margin-right: 0px;
-        }
-        .me-md-8{
-            margin-right: 8px;
-        }
-        .me-md-16{
-            margin-right: 16px;
-        }
-        .me-md-old{
-            margin-right: -20px;
-        }
-        .me-md-24{
-            margin-right: 24px;
-        }
-        .me-md-280{
-            margin-right: 280px;
-        }
-        .my-md-48{
-            margin-top: 48px;
-            margin-bottom: 48px;
-        }
-    }
-    @media(max-width: 576px){
-        .me-sm-16{
-            margin-right: 16px;
-        }
-        .me-sm-0{
-            margin-right: 0px;
-        }
-        .mb-sm-4{
-            margin-bottom: 4px;
-        }
-        .mb-sm-8{
-            margin-bottom: 8px;
-        }
-        .m-sm-8{
-            margin: 8px;
-        }
-        .ms-sm-0{
-            margin-left: 0px;
-        }
-    }
-    .display-heading{
-        font-size: 64px;
-        line-height: 1.2;
-        font-weight: 900;
-    }
-    .display-2{
-        font-size: 48px;
-        line-height: 1.2;
-        font-weight: 700;
-    }
-    @media(max-width: 767px){
-        .display-md-heading{
-            font-size: 16px;
-            line-height: 1.2;
-            font-weight: 900;
-        }
-        .display-md-2{
-            font-size: 48px;
-            line-height: 1.2;
-            font-weight: 700;
-    }
+    .py-md-16 {
+      padding-top: 16px;
+      padding-bottom: 16px;
     }
 
-    .address-row {
-        flex-wrap: nowrap; /* 強制在同一行 */
-        .state-style {
-            flex: 0 0 130px; /* 讓兩個下拉選單保持固定寬度 */
-        }
-        @media (max-width: 767px) {
-            flex-wrap: wrap; /* 手機版換行 */
-            .state-style {
-            flex: 1 1 45%; 
-            }
-        }
+    .py-md-24 {
+      padding-top: 24px;
+      padding-bottom: 24px;
     }
+
+    .py-md-32 {
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+
+    .py-md-40 {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .py-md-095 {
+      padding-top: 9.5px;
+      padding-bottom: 9.5px;
+    }
+
+    .pt-md-8 {
+      padding-top: 8px;
+    }
+
+    .pt-md-10 {
+      padding-top: 10px;
+    }
+
+    .pb-md-32 {
+      padding-bottom: 32px;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .px-sm-12 {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+
+    .px-sm-16 {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .py-sm-12 {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    .py-sm-32 {
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
+
+    .py-sm-40 {
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .py-sm-0 {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  /* ========== Margin ========== */
+  .m-0 {
+    margin: 0 auto;
+  }
+
+  .m8 {
+    margin: 8px;
+  }
+
+  .m-12 {
+    margin: 12px;
+  }
+
+  .ms-16 {
+    margin-left: 16px;
+  }
+
+  .ms-95 {
+    margin-left: 95px;
+  }
+
+  .me-8 {
+    margin-right: 8px;
+  }
+
+  .me-12 {
+    margin-right: 12px;
+  }
+
+  .me-16 {
+    margin-right: 16px;
+  }
+
+  .me-24 {
+    margin-right: 24px;
+  }
+
+  .me-40 {
+    margin-right: 40px;
+  }
+
+  .me-48 {
+    margin-right: 48px;
+  }
+
+  .me-136 {
+    margin-right: 136px;
+  }
+
+  .me-125 {
+    margin-left: 125px;
+  }
+
+  .me-159 {
+    margin-right: 159px;
+  }
+
+  .me-280 {
+    margin-right: 280px;
+  }
+
+  .mt-16 {
+    margin-top: 16px;
+  }
+
+  .mt-20 {
+    margin-top: 20px;
+  }
+
+  .mt-40 {
+    margin-top: 40px;
+  }
+
+  .mt-48 {
+    margin-top: 48px;
+  }
+
+  .mb-4 {
+    margin-bottom: 4px;
+  }
+
+  .mb-8 {
+    margin-bottom: 8px;
+  }
+
+  .mb-12 {
+    margin-bottom: 12px;
+  }
+
+  .mb-16 {
+    margin-bottom: 16px;
+  }
+
+  .mb-20 {
+    margin-bottom: 20px;
+  }
+
+  .mb-24 {
+    margin-bottom: 24px;
+  }
+
+  .mb-32 {
+    margin-bottom: 32px;
+  }
+
+  .mb-40 {
+    margin-bottom: 40px;
+  }
+
+  .mb-48 {
+    margin-bottom: 48px;
+  }
+
+  .mx-12 {
+    margin-right: 12px;
+    margin-left: 12px;
+  }
+
+  .mx-64 {
+    margin-right: 64px;
+    margin-left: 64px;
+  }
+
+  .my-12 {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  .my-14 {
+    margin-top: 14px;
+    margin-bottom: 14px;
+  }
+
+  .my-20 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .my-24 {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  .my-60 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+
+  @include media-breakpoint-down(md) {
+    .m-md-0 {
+      margin-right: 0 auto;
+      margin-left: 0 auto;
+    }
+
+    .m-md-6 {
+      margin-right: 6px;
+      margin-left: 6px;
+    }
+
+    .mb-md-0 {
+      margin-bottom: 0;
+    }
+
+    .mb-md-8 {
+      margin-bottom: 8px;
+    }
+
+    .mb-md-12 {
+      margin-bottom: 12px;
+    }
+
+    .mb-md-16 {
+      margin-bottom: 16px;
+    }
+
+    .mb-md-20 {
+      margin-bottom: 20px;
+    }
+
+    .mb-md-24 {
+      margin-bottom: 24px;
+    }
+
+    .mb-md-30 {
+      margin-bottom: 30px;
+    }
+
+    .mb-md-36 {
+      margin-bottom: 36px;
+    }
+
+    .mt-md-6 {
+      margin-top: 6px;
+    }
+
+    .mt-md-10 {
+      margin-top: 10px;
+    }
+
+    .mt-md-16 {
+      margin-top: 16px;
+    }
+
+    .mt-md-30 {
+      margin-top: 30px;
+    }
+
+    .mt-md-32 {
+      margin-top: 32px;
+    }
+
+    .ms-md-95 {
+      margin-left: 95px;
+    }
+
+    .me-md-0 {
+      margin-right: 0;
+    }
+
+    .me-md-8 {
+      margin-right: 8px;
+    }
+
+    .me-md-16 {
+      margin-right: 16px;
+    }
+
+    .me-md-old {
+      margin-right: -20px;
+    }
+
+    .me-md-24 {
+      margin-right: 24px;
+    }
+
+    .me-md-280 {
+      margin-right: 280px;
+    }
+
+    .my-md-48 {
+      margin-top: 48px;
+      margin-bottom: 48px;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .m-sm-8 {
+      margin: 8px;
+    }
+
+    .ms-sm-0 {
+      margin-left: 0;
+    }
+
+    .me-sm-16 {
+      margin-right: 16px;
+    }
+
+    .me-sm-0 {
+      margin-right: 0;
+    }
+
+    .mb-sm-4 {
+      margin-bottom: 4px;
+    }
+
+    .mb-sm-8 {
+      margin-bottom: 8px;
+    }
+  }
+
+  /* ========== 顯示與特殊排版 ========== */
+  .display-heading {
+    font-size: 64px;
+    line-height: 1.2;
+    font-weight: 900;
+  }
+
+  .display-2 {
+    font-size: 48px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  @include media-breakpoint-down(md) {
+    .display-md-heading {
+      font-size: 16px;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+
+    .display-md-2 {
+      font-size: 48px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+  }
+
+  .address-row {
+    flex-wrap: nowrap;
+
+    .state-style {
+      flex: 0 0 130px;
+    }
+
+    @include media-breakpoint-down(md) {
+      flex-wrap: wrap;
+
+      .state-style {
+        flex: 1 1 45%;
+      }
+    }
+  }
 }

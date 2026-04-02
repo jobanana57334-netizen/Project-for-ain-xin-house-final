@@ -1,0 +1,663 @@
+$lightYellow: #fbf4e4;
+$yellow: #d4ab6a;
+
+* {
+  font-family: Inter, sans-serif;
+}
+
+.custom-toggler {
+  // 1. 設定外框樣式
+  border: none;
+  padding: 10px;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 4px; // 線條之間的間距
+
+  // 移除 Bootstrap 預設的藍色外框 (Focus 時)
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
+  // 2. 設定三條橫線的樣式
+  .toggler-bar {
+    display: block;
+    width: 22px; // 線段寬度
+    height: 3px; // 線段高度
+    background-color: $yellow; // 線段顏色
+    border-radius: 10px; // 關鍵：讓線段變成圓角
+    transition: all 0.3s; // 增加動態效果
+  }
+  // 滑鼠移上去的顏色變化 (可選)
+  &:hover {
+    background-color: rgba($yellow, 0.1);
+  }
+}
+
+.carousel-img {
+  background-color: black;
+}
+
+// Navbar區
+.link-bar {
+  position: relative; // 必須設定，讓偽元素能以它為基準定位
+  text-decoration: none; // 清除預設底線（如果是 a 標籤）
+  transition: all 0.3s ease;
+
+  // 預先寫好下底線的樣式，但先隱藏起來
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px; // 調整底線與文字的距離
+    width: 100%;
+    height: 2px; // 底線粗細
+    background-color: $yellow;
+    transform: scaleX(0); // 初始狀態水平縮放為 0（隱藏）
+    transform-origin: right; // 動畫基準點
+    transition: transform 0.3s ease; // 針對 transform 做動畫
+  }
+
+  @include media-breakpoint-up(md) {
+    &:hover {
+      transform: translateY(5%);
+      // hover 時讓底線長出來
+      &::after {
+        transform: scaleX(1); // 展開成 100%
+        transform-origin: left; // 讓展開動畫從左邊開始
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &:active {
+      transform: translateY(10%);
+
+      &::after {
+        transform: scaleX(1); // 展開成 100%
+        transform-origin: left; // 讓展開動畫從左邊開始
+      }
+    }
+  }
+}
+
+// 個人圖示區
+
+.personal-bar {
+  transition:
+    all 0.3s ease,
+    opacity 0.3s ease; // 具體指定屬效能更好;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background-color: $yellow;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  @include media-breakpoint-up(md) {
+    &:hover {
+      transform: translateY(5%);
+      opacity: 0.8;
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &:active {
+      transform: translateY(10%);
+      opacity: 0.8;
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+  }
+}
+
+.list-side {
+  transition: all 0.3s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background-color: $yellow;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  @include media-breakpoint-up(md) {
+    &:hover {
+      transform: translateY(5%);
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &:active {
+      transform: translateY(10%);
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+  }
+}
+
+// Navber區結束
+
+// 登入註冊區
+// 延用之前的Navbar按鈕樣式並稍作優化
+.top-button {
+  background-color: $lightYellow; // 假設的 $lightYellow
+  border: solid 1px $yellow; // 假設的 $yellow
+  border-radius: 100px;
+  color: #6f5d42;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lighten($yellow, 20%);
+    border: solid 1px darken($yellow, 20%);
+    transform: translateY(2px); // 增加一點壓下感
+    color: black;
+  }
+}
+
+/* 預設在手機版時隱藏這顆按鈕 */
+.desktop-login-btn {
+  display: none !important;
+
+  /* 當螢幕寬度大於 768px (桌機版) 時，強制顯示出來 */
+  @include media-breakpoint-up(md) {
+    display: inline-block !important;
+  }
+}
+// 登入註冊區結束
+
+// adBar區開始
+
+// adBar區開始
+
+// 💡 修正：加上空白，確保是選取 custom-swiper 裡面的點點
+.custom-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  opacity: 0.5;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.custom-swiper .swiper-pagination-bullet-active {
+  width: 60px;
+  border-radius: 4px;
+  background-color: lightgreen;
+  opacity: 1;
+}
+
+.custom-swiper .swiper-button-next,
+.custom-swiper .swiper-button-prev {
+  filter: drop-shadow(0 0 3px rgb(0 0 0 / 80%)) !important;
+}
+
+// 💡 1. 控制高度：手機版稍矮，桌機版維持你的 720px
+// 💡 將高度與圓角合併設定
+.adbar-style {
+  height: 640px; /* 手機版的高度 */
+
+  @include media-breakpoint-up(md){
+    height: 720px; /* 桌機版的高度 */
+    border-radius: 16px !important; /* 🎯 加上 !important 確保絕對生效 */
+
+    /* margin: 40px;  <- 注意：如果你加了這個 margin，可能會讓輪播圖左右不貼齊或跑版，建議先拿掉，用外層的 px-md-4 來推擠就好 */
+  }
+}
+
+// 💡 2. 隱藏箭頭：當螢幕寬度小於 767px (手機版) 時，把箭頭隱藏
+@include media-breakpoint-down(md) {
+  .custom-swiper .swiper-button-next,
+  .custom-swiper .swiper-button-prev {
+    display: none !important;
+  }
+}
+
+// adBar區結束
+
+// adBar區結束
+
+/* 設定自訂義背景顏色 */
+
+.bg-customer {
+  background-color: $lightYellow;
+}
+
+// HouseCard區開始
+
+/* 統一卡片樣式 */
+.custom-card {
+  border-radius: 16px !important;
+  overflow: hidden; /* 重要：防止內部圖片超出圓角 */
+  border: none !important; /* 移除預設邊框，解決底部的怪角問題 */
+  box-shadow: 0 4px 12px rgb(0 0 0 / 8%); /* 加上輕微陰影更有質感 */
+  width: 100%;
+  height: 370px;
+  margin-top: 16px;
+  transition: all 0.3 ease;
+
+  @include media-breakpoint-up(md) {
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 16px 32px rgb(0 0 0 / 15%) !important;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &:active {
+      transform: translateY(-10px);
+      box-shadow: 0 16px 32px rgb(0 0 0 / 15%) !important;
+    }
+  }
+}
+
+/* 確保圖片填滿並維持比例 */
+.custom-card img {
+  border-radius: 10px 10px 0 0; /* 只有上方圓角 */
+  height: 200px;
+  object-fit: cover;
+}
+
+.btn-houseCard-custom {
+  // 基礎狀態：簡約的箭頭
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: solid 1px $yellow;
+  color: #d4a373; // 原本的金棕色
+  font-size: 1.5rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; // 先設定好圓角，為了 hover 變身做準備
+  transition: 0.5s ease;
+
+  &:hover {
+    background-color: $yellow;
+    color: white;
+  }
+
+  &:active {
+    transform: scale(0.95); // 讓按鈕縮小一點點，看起來像被壓下去
+    background-color: darken($yellow, 10%); // 顏色變深一點
+    box-shadow: inset 0 3px 5px rgb(0 0 0 / 20%); // 加入內陰影增加深度感
+  }
+}
+
+// 💡 1. 橫向滑動容器 (隱藏卷軸、支援原生滑動)
+.house-scroll-container {
+  overflow: auto hidden; /* 允許橫向滾動 */
+  -webkit-overflow-scrolling: touch; /* 讓 iOS 滑動更順暢有慣性 */
+  scroll-snap-type: x mandatory; /* (選擇性) 讓卡片滑動時有自動對齊的吸附感 */
+  padding-bottom: 10px; /* 給卡片陰影留點空間 */
+
+  /* 隱藏醜醜的底部卷軸 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+// 💡 2. 控制卡片寬度 (實現 1.5 張效果)
+.house-card-wrapper {
+  scroll-snap-align: start; /* 配合容器的吸附效果 */
+  width: 260px; /* 手機版寬度稍微縮小，確保能看到第二張的一半 */
+  transition: all 0.3s ease;
+
+  @include media-breakpoint-up(md) {
+    width: 306px; /* 平板/桌機版：恢復你原本設定的較寬尺寸 */
+  }
+}
+
+// 💡 3. 桌機版才讓第五張半透明 (避免手機版滑動時第五張看起來怪怪的)
+@include media-breakpoint-up(md) {
+  .opacity-md-50 {
+    opacity: 0.5;
+  }
+}
+
+// HouseCard區結束
+
+// 主題選屋區開始
+
+// 卡片基礎樣式微調
+.theme-card {
+  transition: all 0.3s ease; // 讓陰影和浮起的效果有動畫
+  border: 1px solid transparent; // 預留邊框位置，避免 hover 時跳動
+  cursor: pointer;
+
+  @include media-breakpoint-up(md) {
+    // 當滑鼠移入卡片時的效果
+    &:hover {
+      transform: translateY(-5px); // 稍微往上浮起一點點
+      box-shadow: 0 1px 0 $yellow !important; // [參考圖1] 強烈的浮起陰影
+      border-color: #f0e4d4; // 選項：可以加一個淡淡的邊框增加質感
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &:active {
+      transform: translateY(-5px); // 稍微往上浮起一點點
+      box-shadow: 0 1px 0 $yellow !important; // [參考圖1] 強烈的浮起陰影
+      border-color: #f0e4d4; // 選項：可以加一個淡淡的邊框增加質感
+    }
+  }
+}
+
+/* 主題找屋的小箭頭 */
+.theme-arrow {
+  // 基礎狀態：簡約的箭頭
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  color: #d4a373; // 原本的金棕色
+  font-size: 1.5rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; // 先設定好圓角，為了 hover 變身做準備
+  transition: all 0.3s ease; // 關鍵：所有變化都要有過渡動畫
+
+  @include media-breakpoint-up(md) {
+    // [關鍵] 當這張卡片被 hover 時，箭頭的樣式變化
+    .theme-card:hover & {
+      background-color: #d4a373; // [參考圖2] 變成實心金棕色背景
+      color: #fff; // 箭頭本身變成白色
+      transform: translateX(5px); // 同時稍微往右移動，增加動態感
+      box-shadow: 0 4px 8px rgb(212 163 115 / 30%); // 加上一點同色系的陰影
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    .theme-card:active & {
+      background-color: #d4a373; // [參考圖2] 變成實心金棕色背景
+      color: #fff; // 箭頭本身變成白色
+      transform: translateX(5px); // 同時稍微往右移動，增加動態感
+      box-shadow: 0 4px 8px rgb(212 163 115 / 30%); // 加上一點同色系的陰影
+    }
+  }
+}
+// 主題選屋區結束
+
+// 推薦區開始
+
+.custom-yt-icon {
+  color: #d4a373;
+  font-size: 1.2rem;
+
+  /* 關鍵：強制行高為 1，避免被繼承的行高撐開 */
+  line-height: 1;
+
+  /* 關鍵：確保 icon 本身以 inline-flex 渲染，更利於對齊 */
+  display: inline-flex;
+
+  /* 視覺微調：如果覺得 icon 還是太高，可以用 translateY 往下壓 1px */
+  transform: translateY(1px);
+}
+
+// 推薦區結束
+
+// 最新公告區
+
+/* 外層容器：設定背景圖與遮罩 */
+.news-app-section {
+  padding: 60px 0;
+  background-size: cover;
+  background-position: center;
+  position: relative; /* 讓內部絕對定位元素相對於此容器定位 */
+  overflow: hidden; /* 防止內容溢出 */
+  border-radius: 0;
+  z-index: 0; /* 確保背景在最底層 */
+
+  @include media-breakpoint-up(md) {
+    border-radius: 20px;
+  }
+  // 2. 製作獨立遮罩層 (偽元素)
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    // 這裡控制遮罩的顏色與暗度 (0.5 代表 50% 透明黑)
+    background-color: rgb(0 0 0 / 10%);
+
+    // 如果你想要之前的漸層效果，可以改用 linear-gradient
+    // background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+
+    z-index: 1; // 遮罩層在第 1 層
+  }
+
+  // 3. 讓裝載卡片的容器浮上來
+  .custom-container {
+    position: relative;
+    z-index: 2; // 內容物在第 2 層，確保高於遮罩
+  }
+}
+
+/* 白底卡片 */
+.info-card {
+  background-color: #fff;
+  border-radius: 15px;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 圖片中藍色的虛線裝飾（若需要精確還原） */
+.decoration-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  border-top: 2px dashed #00a0e9;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.DownloadIcon {
+  transition: 0.3s ease-in;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(2px);
+    box-shadow: 0 10px 10px rgb(0 0 0 / 10%);
+  }
+}
+
+.phone-mockup {
+  position: absolute;
+  bottom: 0%; /* 手機版往下沉一點 */
+  left: 5%; /* 稍微超出右邊界 */
+  width: 160px; /* 手機版尺寸縮小，才不會擋到按鈕 */
+  z-index: 1;
+  pointer-events: none; /* 確保點擊可以穿透 */
+  transition: all 0.3s ease;
+
+  @include media-breakpoint-up(md) {
+    width: 260px; /* 桌機版尺寸放大 */
+  }
+}
+
+// 最新公告區結束
+
+// footer
+
+/* all.scss */
+
+// 定義顏色變數 (根據截圖顏色抓取)
+// footer
+
+/* 定義顏色變數 */
+
+/* 定義顏色變數 */
+$footer-bg: #6b5a3e;
+$footer-text: #e0d1b1;
+
+.footer {
+  background-color: $footer-bg;
+  color: $footer-text;
+  padding: 60px 0;
+  margin-top: 0 !important; // 確保跟最新公告區塊無縫接軌
+
+  // 1. Logo 區塊
+  .logo-bar {
+    position: relative;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    // Logo 的底線動畫
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 40%;
+      height: 2px;
+      background-color: $yellow;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    @include media-breakpoint-up(md) {
+      &:hover {
+        transform: translateY(5%);
+
+        &::after {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      &:active {
+        transform: translateY(10%);
+
+        &::after {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+    }
+  }
+
+  // 2. 聯絡資訊區
+  .contact-info {
+    p {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  // 3. 社群圖示區
+  .social-icons {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 1.5rem;
+  }
+
+  // 4. 導覽列區
+  .footer-nav {
+    h5 {
+      font-weight: bold;
+      margin-bottom: 16px;
+      font-size: 1rem;
+      color: lighten($footer-text, 10%);
+    }
+
+    .nav-links {
+      font-size: 0.9rem;
+      line-height: 2;
+      color: darken($footer-text, 10%);
+
+      // 💡 修正：把 span 改成 a，斜線才會正常出現！
+      a:not(:last-child)::after {
+        content: " / ";
+        margin: 0 8px;
+        opacity: 0.8;
+        font-size: 0.8rem;
+        color: $footer-text; // 確保斜線不會跟著 hover 變發亮
+      }
+    }
+    
+    .nav-section {
+      margin-bottom: 32px;
+    }
+  }
+
+  // 🌟 5. 統一管理 Footer 內所有連結的特效 (移到外面來了！)
+  .contact-info a,
+  .nav-links a,
+  .social-icons a {
+    color: #f5e0bd; /* 預設給他最亮的純白！ */
+    transition: all 0.3s ease; 
+    text-decoration: none; // 確保沒有醜醜的底線
+    
+    &:hover, 
+    &:active {
+      color: #fff; /* 滑過去變成奶油色 */
+      transform: translateY(-2px);
+    }
+  }
+
+  // 🌟 6. 社群圖示專屬的放大特效
+  .social-icons a {
+    display: inline-block;
+
+    &:hover, 
+    &:active {
+      transform: scale(1.15);
+    }
+  }
+}
+// footer結束
+
+// footer結束

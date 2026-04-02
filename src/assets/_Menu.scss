@@ -1,0 +1,89 @@
+// 設定列表按鈕(可套用在UserMenu+Menu上)
+@use "sass:color";
+// Style 3: 現代底線延展
+.custom-list-button {
+  color: #d4ab6a;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative; // 為底線做定位準備
+  display: inline-block;
+  padding-bottom: 4px; // 給底線留一點空間
+  cursor:pointer;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%; // 從中間往兩側展開
+    background-color: #d4ab6a;
+    transition: all 0.3s ease;
+    transform: translateX(-50%); // 確保置中
+  }
+
+  @include media-breakpoint-up(md) {
+    &:hover {
+      color: color.adjust(#d4ab6a, $lightness: -15%);
+
+      &::after {
+        width: 100%; // 滑鼠懸停時底線長到 100%
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &:active {
+      color: color.adjust(#d4ab6a, $lightness: -15%);
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// 登出按鈕部分
+.custom-list-logout {
+  color: #c85a17;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative; // 為底線做定位準備
+  display: inline-block;
+  padding-bottom: 4px; // 給底線留一點空間
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #c85a17;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  @include media-breakpoint-up(md) {
+    &:hover {
+      color: color.adjust(#c85a17, $lightness: -15%);
+
+      &::after {
+        width: 100%; // 滑鼠懸停時底線長到 100%
+      }
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &:active {
+      color: color.adjust(#c85a17, $lightness: -15%);
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}

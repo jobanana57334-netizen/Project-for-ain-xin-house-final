@@ -1,11 +1,11 @@
 import UserProfileEdit from "../components/PersonalData/UserProfileEdit";
 
 const PersonalEdit=()=>{
-    return(
-        <>
-            <UserProfileEdit/>
-        </>
-    )
+  return(
+    <>
+      <UserProfileEdit/>
+    </>
+  )
 }
 
 export default PersonalEdit;

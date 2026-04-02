@@ -1,11 +1,10 @@
+@use "sass:color";
 
-
-#root{
-  background-color: #FCFBF7;
+#root {
+  background-color: #fcfbf7;
 }
 
 .house-gallery-container {
-  
   /* 針對下方縮圖區塊的設定 */
   .thumbs-swiper {
     .swiper-slide {
@@ -14,17 +13,18 @@
       cursor: pointer;
     }
 
-    /* 這是 Swiper 自動幫「當前選中」的縮圖加上的 class */
+    /* 這是 Swiper 自動幫「當前選中」的縮圖加上的 className */
     .swiper-slide-thumb-active {
       opacity: 1; /* 選中時恢復完全不透明 */
-      
+
       /* 對應你截圖的橘色邊框，顏色可以改成你們的品牌色 */
       img {
-        border: 2px solid #D4A373; 
+        border: 2px solid #d4a373;
         box-sizing: border-box; /* 確保邊框不會讓圖片尺寸變形 */
       }
     }
   }
+
   .main-swiper {
     /* 針對左右導航按鈕的「容器」 */
     .swiper-button-next,
@@ -35,11 +35,11 @@
       // 使用 !important 強制固定寬高為 56px
       width: 56px !important;
       height: 56px !important;
-      
+
       // 設定背景色與圓角
-      background-color: rgba(0, 0, 0, 0.2);
+      background-color: rgb(0 0 0 / 20%);
       border-radius: 50%;
-      
+
       // 設定箭頭顏色
       color: #fff !important;
 
@@ -51,13 +51,13 @@
       // 讓內部的箭頭在水平與垂直方向都完美置中
       align-items: center;
       justify-content: center;
-      
+
       // ⚠️ 關鍵：重置 Swiper 可能預設的 margin，這常是導致無法置中的元兇
-      margin: 0 !important; 
+      margin: 0 !important;
 
       // 如果螢幕大小為手機版本,左右箭頭必須隱藏
-      @media (max-width:767px){
-            display: none !important; // 加上 !important 確保能壓過 Swiper 預設的樣式
+      @include media-breakpoint-down(md){
+        display: none !important; // 加上 !important 確保能壓過 Swiper 預設的樣式
       }
     }
   }
@@ -67,58 +67,57 @@
   .swiper-button-prev svg {
     width: 40px !important;
     height: 40px !important;
-    stroke: #ffffff !important;      /* 確保筆畫顏色是白色 */
+    stroke: #fff !important; /* 確保筆畫顏色是白色 */
     stroke-width: 1px !important;
   }
-  
 }
-
-
 
 // 設定文字卡片區
 
 .tag {
   // 佈局設定：對應 Figma 的 Padding
-  padding: 8px 16px; 
+  padding: 8px 16px;
   border-radius: 4px; // 對應 Figma 的 Radius 4px
-  
+
   // 顏色設定
-  background-color: #F1F3F5; // 或是你喜歡的 #80A5B833
-  color: #868E96;
-  
+  background-color: #f1f3f5; // 或是你喜歡的 #80A5B833
+  color: #868e96;
+
   // 文字設定
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
   white-space: nowrap; // 確保標籤文字不換行
-  
+
   // 裝飾
   border: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-};
+}
 
-.price{
-  color:#C1521D;
+.price {
+  color: #c1521d;
   font-weight: 600;
 }
 
 // 電話連絡按鈕
 
-.contact{
+.contact {
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 100px;
   padding: 16px 24px;
   background-color: transparent; /* 背景透明 */
-  border: 2px solid #F5E0BD; /* 奶茶色邊框 */
+  border: 2px solid #f5e0bd; /* 奶茶色邊框 */
   font-weight: bold;
-  color: #6F5D42; /* 文字顏色用深咖啡色，確保可讀性 */
+  color: #6f5d42; /* 文字顏色用深咖啡色，確保可讀性 */
+  cursor:pointer;
   transition: all 0.3s ease;
+
   &:hover {
-    background-color: rgba(#F5E0BD, 0.2); /* 滑過時透出一點點底色 */
+    background-color: rgba(#f5e0bd, 0.2); /* 滑過時透出一點點底色 */
   }
 }
 
@@ -128,47 +127,45 @@
   justify-content: center;
   align-items: center;
   border-radius: 100px;
-  padding : 16px 24px ;
+  padding: 16px 24px;
   gap: 24px;
-  background-color: #F5E0BD;
-  border: 2px solid #F5E0BD; /* 加上實線邊框才不會跟空心按鈕有高度落差 */
-  border: transparent;
+  background-color: #f5e0bd;
+  border: 2px solid #f5e0bd; /* 加上實線邊框才不會跟空心按鈕有高度落差 */
+  cursor:pointer;
   transition: all 0.3s ease;
-  
-  &:hover{
-    background-color:darken(#F5E0BD, 15%);
 
+  &:hover {
+    background-color: color.adjust(#f5e0bd,$lightness:-15%);
   }
 }
 
-
 // 地圖區調整
 
-.map-container{
+.map-container {
   height: 250px;
-  
-  @media(max-width:767px){
+
+  @include media-breakpoint-down(md) {
     height: 400px;
   }
 }
 
 // 地圖區調整結束
 
-.interest-house-cards{
-
-  transition:all 0.3s ease;
+.interest-house-cards {
+  transition: all 0.3s ease;
   overflow: hidden;
-  @media(min-width:768px){
-    &:hover{
-      transform: translateY(-10px);
-      box-shadow: 0 5px 1px rgba(#D4A373, 1);
-    }
-  };
 
-  @media(max-width:767px){
-    &:active{
+  @include media-breakpoint-up(md) {
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 5px 1px #d4a373;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &:active {
       transform: translateY(-5px);
-      box-shadow: 0 5px 1px rgba(#D4A373, 1);
+      box-shadow: 0 5px 1px#d4a373;
     }
   }
 }

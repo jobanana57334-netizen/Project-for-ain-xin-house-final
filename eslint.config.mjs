@@ -5,7 +5,7 @@ import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 
 export default [
-  // 💡 1. 忽略不需要檢查的資料夾 (這是你報錯破三千的主要原因！)
+  // 1. 忽略不需要檢查的資料夾
   { ignores: ["dist", "build", "node_modules", "upload.js", "**/*.test.js"] },
 
   {
@@ -14,7 +14,7 @@ export default [
       ecmaVersion: 2020,
       globals: {
         ...globals.browser,
-        ...globals.node, // 讓 ESLint 認得 process, require 等 Node.js 語法
+        ...globals.node,
       },
       parserOptions: {
         ecmaVersion: 'latest',
@@ -22,24 +22,43 @@ export default [
         sourceType: 'module',
       },
     },
-    settings: { react: { version: '18.3' } }, ///更換成較舊版本,避免bug
+    settings: { react: { version: '18.3' } },
     plugins: {
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
     rules: {
-      // 引入推薦規則
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
+      // 不允許使用 console.log，但允許 console.warn 和 console.error
+      'no-console': ['error', { allow: ['warn', 'error'] }],
 
-      // 💡 2. 關閉或放寬一些太嚴格的規定
-      'react/prop-types': 'off', // 關閉 prop-types 檢查 (你沒用 TS，關掉才不會狂報錯)
-      'no-unused-vars': 'warn',  // 變數宣告了卻沒用到，給「警告」就好，不要報錯
-      'react/no-unknown-property': 'warn', // 針對 class 寫成 className 給警告
-      'react-hooks/exhaustive-deps': 'warn', // useEffect 依賴陣列缺少變數時給警告
+      // --- 🏛️ 硬性縮排與基本規定 (Error) ---
+      'indent': ['error', 2],                // 一般 JS 縮排 2 格
+      'react/jsx-indent': ['error', 2],       // JSX 標籤縮排 2 格
+      'react/jsx-indent-props': ['error', 2], // JSX 屬性縮排 2 格
+      
+      // --- 🚨 嚴格品質監控 (全部由 Warn 升級為 Error) ---
+      
+      // 1. 變數宣告了就一定要用到，不准留著垃圾代碼
+      'no-unused-vars': ['error', { 
+        "vars": "all", 
+        "args": "after-used", 
+        "ignoreRestSiblings": true 
+      }],
+
+      // 2. 針對 class 寫成 className 給予硬性報錯
+      'react/no-unknown-property': ['error', { ignore: ['class'] }], 
+
+      // 3. React Hooks 的依賴陣列必須完整，少寫一個都不行
+      'react-hooks/exhaustive-deps': 'error', 
+
+      // --- 其他自定義規則 ---
+      'react/prop-types': 'off', // 沒用 TS 的情況下，維持關閉以避免過度報錯
+      'react-refresh/only-export-components': ['error', { allowConstantExport: true }],
     },
   },
 ]

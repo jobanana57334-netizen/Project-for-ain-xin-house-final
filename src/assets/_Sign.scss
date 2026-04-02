@@ -1,0 +1,37 @@
+@use "sass:color";
+
+.custom-input {
+  background-color: #fdf1e3 !important; /* 配合設計圖的粉橘色背景 */
+  border-radius: 8px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.btn-warning {
+  background-color: #f5d1a9;
+  border-color: #f5d1a9;
+  color: #6f5d42; /* 加上深咖啡色文字，確保對比度與質感 */
+  transition: all 0.3s ease;
+
+  &:hover,
+  &:active {
+    background-color: color.adjust(#f5d1a9, $lightness: -10%);
+    border-color: color.adjust(#f5d1a9, $lightness: -10%);
+    color: #6f5d42;
+  }
+}
+
+/* 如果你的 input 有時候會出現背景變黃(瀏覽器自動填入)，
+   可以加這段強制的 shadow 來覆蓋它 (選用) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  /* 將原本的 white 改成你的背景色 #fdf1e3 */
+  box-shadow: 0 0 0 30px #fdf1e3 inset !important;
+  
+  /* 加碼送你這行：確保自動填入的字體顏色不會跑掉 */
+  -webkit-text-fill-color: #4a4a4a !important; 
+}

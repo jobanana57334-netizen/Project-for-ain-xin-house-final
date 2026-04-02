@@ -1,0 +1,31 @@
+.action-row {
+  transition: background-color 0.2s ease;
+  cursor: pointer; /* 💡 加碼小手手，讓使用者知道這行可以點 */
+
+  // 桌機版：滑鼠移過去變底色
+  @include media-breakpoint-up(md) {
+    &:hover {
+      background-color: #f8f9fa; /* Bootstrap 的 bg-light */
+    }
+  }
+
+  // 手機版：點下去的瞬間才變底色
+  @include media-breakpoint-down(md) {
+    &:active {
+      background-color: #f8f9fa;
+    }
+  }
+}
+
+/* 確保 react-datepicker 彈出視窗永遠在最上層 */
+.react-datepicker-popper {
+  z-index: 9999 !important;
+}
+
+/* 確保 input-group 裡的 datepicker 寬度能正確填滿 */
+.react-datepicker-wrapper {
+  flex: 1 1 auto;
+  width: auto;
+  
+  /* 💡 小提醒：如果你發現 input 還是沒有完全撐滿，可以嘗試把上面的 width: auto; 改成 width: 100%; */
+}

@@ -42,7 +42,7 @@ const EditPublishHouses = () => {
       {/* 房屋列表網格 (使用 Bootstrap 5 的 Row & Col) */}
       <div className="row g-4">
         {mockHouses.map((house) => (
-          <div className="col-12 col-md-6 col-xl-4" key={house.id}>
+          <div className="col-md-6 col-xl-4" key={house.id}>
             {/* 卡片本體 */}
             <div className="card h-100 shadow-sm border-0">
               {/* 房屋圖片 */}
